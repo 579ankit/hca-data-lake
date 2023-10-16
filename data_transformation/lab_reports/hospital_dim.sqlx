@@ -1,0 +1,10 @@
+config {
+    type: "table",
+    database: "curated-project-id",
+    assertions: {
+    nonNull: ["hospital_name","hospital_address","hospital_district","hospital_state","hospital_zipcode"],
+    uniqueKey: ["hospital_id"]
+  }
+}
+select hospital_id,
+hospital_name,hospital_address,hospital_district,hospital_state,hospital_zipcode,create_timestamp,update_timestamp  from projectid.dataset.hospital_data
