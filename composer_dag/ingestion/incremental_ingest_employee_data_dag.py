@@ -22,8 +22,8 @@ def ingest_incremental_data(bucket_name):
         source_file = os.path.splitext(each_file_name)[0]
         date = f"date={extract_date(source_file)}"
         
-        file_name = each_file_name.replace({FOLDER_PREFIX}, '')
-        destination_blob_name = f"{FOLDER_PREFIX}/{date}/{file_name}"
+        file_name = each_file_name.replace(FOLDER_PREFIX, '')
+        destination_blob_name = f"{FOLDER_PREFIX}{date}/{file_name}"
             
         source_bucket = SOURCE_STORAGE_CLIENT.bucket(bucket_name)
         destination_bucket = DESTINATION_STORAGE_CLIENT.bucket(DESTINATION_BUCKET_NAME)
