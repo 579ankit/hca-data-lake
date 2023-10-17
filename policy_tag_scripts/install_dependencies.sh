@@ -6,4 +6,5 @@ pip install google-cloud-datacatalog
 
 pip3 install google-cloud-bigquery
 
-pip install google-cloud-dlp
+pip install google-cloud-bigquery-datapolicies
+
