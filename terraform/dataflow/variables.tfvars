@@ -6,9 +6,9 @@ dataflow_job_parameters = [
 
   },
   {
-    input_topic : "projects/hca-usr-hin-datalake-poc/topics/hca_lab_report_json",
-    input_subscription : "projects/hca-usr-hin-datalake-poc/subscriptions/hca_lab_report_json-sub",
-    output_path : "gs://hca_hospital-reports_landing_20231005/lab_report_json/"
+    input_topic : "projects/hca-usr-hin-datalake-poc/topics/hca_lab_report_data_json",
+    input_subscription : "projects/hca-usr-hin-datalake-poc/subscriptions/hca_lab_report_data_json-sub",
+    output_path : "gs://hca_hospital-reports_landing_20231005/lab_report_data_json/"
   }
 ]
 template_gcs_path            = "gs://hca_job_data_20231009/dataflow/dataflow-flex-templates/Json_pubsubtogcs"
