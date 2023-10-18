@@ -1,0 +1,21 @@
+{
+    "name": "PubSub to GCS Streaming beam python flex template",
+    "description": "PubSub to GCS Streaming beam python flex template.",
+    "parameters": [
+      {
+        "name": "input_subscription",
+        "label": "Input PubSub subscription.",
+        "helpText": "Name of the input PubSub subscription to consume from.",
+        "regexes": [
+          "projects/[^/]+/subscriptions/[a-zA-Z][-_.~+%a-zA-Z0-9]{2,}"
+        ]
+      },
+      {
+        "name": "output_path",
+        "label": "Gcs directory to store files",
+        "helpText": "Path of the output GCS file directory including the prefix.",
+        "regexes":["^gs://.*?/$"]
+       }
+  
+    ]
+  }
