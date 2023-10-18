@@ -21,9 +21,10 @@ def ingest_incremental_data(bucket_name):
         each_file_name = each_file.name
         source_file = os.path.splitext(each_file_name)[0]
         date = f"date={extract_date(source_file)}"
+        time = f"time={extract_time(source_file)}"
         
         file_name = each_file_name.replace(FOLDER_PREFIX, '')
-        destination_blob_name = f"{FOLDER_PREFIX}{date}/{file_name}"
+        destination_blob_name = f"{FOLDER_PREFIX}{date}/{time}/{file_name}"
             
         source_bucket = SOURCE_STORAGE_CLIENT.bucket(bucket_name)
         destination_bucket = DESTINATION_STORAGE_CLIENT.bucket(DESTINATION_BUCKET_NAME)
@@ -47,6 +48,14 @@ def extract_date(source_file):
         day = date_string[6:8]
         return f"{year}-{month}-{day}"
     
+def extract_time(source_file):
+    match = re.search(DATE_PATTERN, source_file)
+    if match:
+        date_string = match.group(0)
+        hour = date_string[8:10]
+        min = date_string[10:12]
+        return f"{hour}:{min}"
+
 default_args = {
     'depends_on_past': False,
     'start_date': datetime(2023, 10, 5),
