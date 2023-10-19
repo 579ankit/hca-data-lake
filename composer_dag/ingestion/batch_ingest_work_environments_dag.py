@@ -15,6 +15,7 @@ default_args = {
     'start_date': datetime(2023, 10, 5),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
+    'schedule_interval': '@once',
 }
 
 dag = DAG(
@@ -27,7 +28,7 @@ dag = DAG(
 move_incremental_data_task = PythonOperator(
     task_id='batch_ingest_work_environments',
     python_callable= ingest_data,
-    op_args=[BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX], 
+    op_args=[BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX],
     dag=dag,
 )
 

@@ -22,6 +22,7 @@ def ingest_data(BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX):
         source_bucket = SOURCE_STORAGE_CLIENT.bucket(BUCKET_NAME)
         destination_bucket = DESTINATION_STORAGE_CLIENT.bucket(DESTINATION_BUCKET_NAME)
         new_blob = source_bucket.copy_blob(each_file, destination_bucket, destination_blob_name)
+        each_file.delete()
 
 def get_all_the_files_as_blob(source_bucket_name, folder_prefix):
     file_list = []
