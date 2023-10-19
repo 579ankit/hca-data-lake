@@ -18,4 +18,4 @@ dataflow_serviceaccount      = "hca-dataflow-datalake-poc-sa@hca-usr-hin-proc-da
 dataflow_project             = "hca-usr-hin-proc-datalake"
 dataflow_region              = "us-central1"
 dataflow_vpc_network         = "hca-datalake-processing-net"
-dataflow_subnetwork_selflink = "projects/hca-usr-hin-proc-datalake/regions/us-central1/subnetworks/hca-datalake-processing-net"
+dataflow_subnetwork_selflink = "regions/us-central1/subnetworks/hca-datalake-processing-net"

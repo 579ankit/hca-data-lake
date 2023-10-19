@@ -55,7 +55,7 @@ def hive_filenaming(*args):
   utc_now=datetime.utcnow()
   date_str=utc_now.strftime("%Y-%m-%d")
   time_str=utc_now.strftime("%H:%M")
-  datekey="dt="+date_str
+  datekey="date="+date_str
   timekey="time="+time_str
   filedir="/".join([datekey,timekey]) + "/"
   filename = filedir+ destination + ".jsonl"
