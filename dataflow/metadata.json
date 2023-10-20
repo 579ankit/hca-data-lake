@@ -15,7 +15,18 @@
         "label": "Gcs directory to store files",
         "helpText": "Path of the output GCS file directory including the prefix.",
         "regexes":["^gs://.*?/$"]
+       },
+       {
+        "name":"Window_size",
+        "label":"Window interval in minutes",
+        "helpText":"Window interval in minutes for grouping incoming messages.",
+        "isOptional":true
+       },
+       {
+        "name":"num_shards",
+        "label":"Number of shards",
+        "helpText":"Number of files to be written per window",
+        "isOptional":true
        }
-  
     ]
   }

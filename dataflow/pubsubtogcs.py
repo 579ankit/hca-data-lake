@@ -51,7 +51,7 @@ class ExtractMsgs(DoFn):
 def hive_filenaming(*args):
   #hive file partitioning 
   file_name = fileio.destination_prefix_naming()(*args)
-  destination = file_name.split('----')[0].split('-')[0]  
+  destination = file_name.split('----')[0]  
   utc_now=datetime.utcnow()
   date_str=utc_now.strftime("%Y-%m-%d")
   time_str=utc_now.strftime("%H:%M")
@@ -61,7 +61,7 @@ def hive_filenaming(*args):
   filename = filedir+ destination + ".jsonl"
   return  filename              
             
-def run(input_subscription, output_path, pipeline_args=None):
+def run(input_subscription, output_path,window_size,num_shards, pipeline_args=None):
     # Set `save_main_session` to True so DoFns can access globally imported modules.
     pipeline_options = PipelineOptions(
         pipeline_args, streaming=True, save_main_session=True
@@ -74,9 +74,9 @@ def run(input_subscription, output_path, pipeline_args=None):
             pipeline
             | "Read from Pub/Sub" >> io.ReadFromPubSub(subscription=input_subscription).with_output_types(bytes)
             | "UTF-8 bytes to string" >> Map(lambda message: message.decode("utf-8"))
-            | "Window into" >> GroupMessagesByFixedWindows(window_size=10, num_shards=1)
+            | "Window into" >> GroupMessagesByFixedWindows(window_size=window_size, num_shards=num_shards)
             | "Get messages">>ParDo(ExtractMsgs())
-            | "Write to GCS">>fileio.WriteToFiles(path=output_path,destination=destination_filename,file_naming=hive_filenaming,shards=1)
+            | "Write to GCS">>fileio.WriteToFiles(path=output_path,destination=destination_filename,file_naming=hive_filenaming,shards=num_shards)
             
         )
 
@@ -94,11 +94,25 @@ if __name__ == "__main__":
         "--output_path",
         help="Path of the output GCS file directory including the prefix.",
     )
+    parser.add_argument(
+        "--window_size",
+        type=int,
+        default=5,
+        help="Output file's window size in minutes.",
+    )
+    parser.add_argument(
+        "--num_shards",
+        type=int,
+        default=3,
+        help="Number of shards to use when writing windowed elements to GCS.",
+    )
     
     known_args, pipeline_args = parser.parse_known_args()
 
     run(
         known_args.input_subscription,
         known_args.output_path,
+        known_args.window_size,
+        known_args.num_shards,
         pipeline_args,
     )
