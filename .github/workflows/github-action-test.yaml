@@ -30,7 +30,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           token_format: access_token
-          workload_identity_provider: 'projects/551629814272/locations/global/workloadIdentityPools/hca-pool/providers/hca-provide'
+          workload_identity_provider: 'projects/551629814272/locations/global/workloadIdentityPools/hca-pool/providers/hca-provider'
           service_account: 'cicd-sa@hca-data-lake-poc.iam.gserviceaccount.com'
 
       - id: 'upload-file'
