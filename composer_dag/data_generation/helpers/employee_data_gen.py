@@ -18,11 +18,12 @@ END_DATE_YEAR_GRADUATED=datetime.strptime("1999-12-01", DATETIME_FORMAT)
 
 workplace_environment_file_prefix=config_file.work_environments_file_prefix
 project_name=config_file.project_name
-bucket_prefix=config_file.bucket_prefix
+bucket_prefix=config_file.source_bucket_prefix
 work_environments_folder_name=config_file.work_environments_folder_name
 employee_data_folder_name=config_file.employee_data_folder_name
 employment_status_active=config_file.employment_status_active
-
+destination_bucket_prefix=config_file.bucket_prefix
+destination_folder_name=config_file.destination_folder_name
 
 def pick_latest_bucket(matching_buckets):
 
@@ -70,7 +71,7 @@ def get_matching_file_path(project_name,bucket_name,work_environments_file_prefi
 
 def get_workplace_file_path(project_name, workbucket_prefix, work_environments_file_prefix):
 
-    bucket_name=get_bucket_name(project_name, workbucket_prefix)
+    bucket_name=get_bucket_name(project_name, bucket_prefix)
     workplace_environment_file=get_matching_file_path(project_name,bucket_name,work_environments_file_prefix)
     return bucket_name, workplace_environment_file
 
@@ -120,7 +121,6 @@ def gen_last_working_day(employment_status,date_of_joining_company):
         last_working_day=fake.date_between_dates(date_start=date_of_joining_company, date_end=datetime.today()-timedelta(weeks=12))
     
     return last_working_day
-
 
 def employee_data_gen_start_function():
 
@@ -231,7 +231,15 @@ def employee_data_gen_start_function():
 
     #Add timestamp to filename
 
-    output_file_name=config_file.destination_file_name_prefix+str(datetime.now().strftime('%Y%m%d%H%M'))+".parquet"
-    output_file_with_path=GCS_URI_PREFIX+bucket_name+"/"+employee_data_folder_name+"/"+output_file_name
-
+    output_file_name=config_file.destination_file_name_prefix+str(datetime.now().strftime('%Y%m%d%H%M%S'))+".parquet"
+    
+    destination_bucket_name=get_bucket_name(project_name,destination_bucket_prefix)
+    output_file_with_path=GCS_URI_PREFIX+destination_bucket_name+"/"+destination_folder_name+"/"+output_file_name
     output_df.to_parquet(output_file_with_path,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
+    
+    output_file_name_bkp=config_file.destination_file_name_prefix+".parquet"
+    output_file_with_path_bkp=GCS_URI_PREFIX+bucket_name+"/"+employee_data_folder_name+"/"+output_file_name_bkp
+    output_df.to_parquet(output_file_with_path_bkp,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
+
+
+

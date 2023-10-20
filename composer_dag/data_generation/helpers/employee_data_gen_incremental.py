@@ -83,7 +83,7 @@ def change_email(current_email):
 def employee_data_gen_incremental_start_function():
 
     project_name=config_file.project_name
-    bucket_prefix=config_file.bucket_prefix
+    bucket_prefix=config_file.source_bucket_prefix
     employee_data_folder_name=config_file.employee_data_folder_name
     employee_data_file_prefix=config_file.destination_file_name_prefix
 
@@ -107,8 +107,9 @@ def employee_data_gen_incremental_start_function():
 
     employee_df_new[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]]=employee_df_new[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]].apply(pd.to_datetime)
 
+    destination_bucket_name=get_bucket_name(project_name,config_file.bucket_prefix)   
     output_file_name=config_file.destination_file_name_prefix+str(datetime.now().strftime('%Y%m%d%H%M%S'))+".parquet"
-    output_file_with_path=GCS_URI_PREFIX+bucket_name+"/"+employee_data_folder_name+"/"+output_file_name
+    output_file_with_path=GCS_URI_PREFIX+destination_bucket_name+"/"+config_file.destination_folder_name+"/"+output_file_name
 
     employee_df_new.to_parquet(output_file_with_path,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
 
