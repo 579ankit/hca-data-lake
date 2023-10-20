@@ -20,13 +20,16 @@
         "name":"Window_size",
         "label":"Window interval in minutes",
         "helpText":"Window interval in minutes for grouping incoming messages.",
+        "regexes":["^\\d"],
         "isOptional":true
        },
        {
         "name":"num_shards",
         "label":"Number of shards",
         "helpText":"Number of files to be written per window",
+        "regexes":["^\\d"],
         "isOptional":true
        }
+
     ]
   }
