@@ -97,13 +97,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--window_size",
         type=int,
-        default=5,
+        default=10,
         help="Output file's window size in minutes.",
     )
     parser.add_argument(
         "--num_shards",
         type=int,
-        default=3,
+        default=1,
         help="Number of shards to use when writing windowed elements to GCS.",
     )
     

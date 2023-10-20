@@ -18,14 +18,14 @@
        },
        {
         "name":"Window_size",
-        "label":"Window interval in minutes",
+        "label":"Window interval in minutes (default 10 mins)",
         "helpText":"Window interval in minutes for grouping incoming messages.",
         "regexes":["^\\d"],
         "isOptional":true
        },
        {
         "name":"num_shards",
-        "label":"Number of shards",
+        "label":"Number of shards (default 1 shard)",
         "helpText":"Number of files to be written per window",
         "regexes":["^\\d"],
         "isOptional":true
