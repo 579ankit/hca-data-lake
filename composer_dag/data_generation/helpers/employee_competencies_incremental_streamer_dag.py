@@ -3,7 +3,7 @@ import airflow
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from helpers.employee_data_gen_incremental import employee_data_gen_incremental_start_function
+from helpers.employee_competencies_incremental import employee_competencies_incremental_start_function
 
 
 default_args = {
@@ -13,11 +13,12 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
+
 dag = DAG(
-    'employee_data_gen_incremental_dag',
+    'employee_competencies_incremental_dag',
     default_args=default_args,
-    description='dag to generate synthetic data for incremental employee data',
-    schedule_interval=None,
+    description='dag to stream a few employee competencies to pubsub topic',
+    schedule_interval='*/5 * * * *',
 )
 def start_dag():
     logging.info("Starting the DAG...!")
@@ -35,9 +36,9 @@ start_ = PythonOperator(
 )
 
 
-employee_data_generation_incremental = PythonOperator(
-    task_id='generate_data',
-    python_callable=employee_data_gen_incremental_start_function,
+employee_competencies_incremental_streamer = PythonOperator(
+    task_id='stream_data',
+    python_callable=employee_competencies_incremental_start_function,
     provide_context=True,
     dag=dag,
 )
@@ -49,11 +50,13 @@ end_=PythonOperator(
 )
 
 
-start_>>employee_data_generation_incremental>>end_
+start_>>employee_competencies_incremental_streamer>>end_
 
 
 if __name__ == "__main__":
     dag.cli()
+
+
 
 
 
