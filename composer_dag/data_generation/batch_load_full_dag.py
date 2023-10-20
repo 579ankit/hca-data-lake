@@ -3,8 +3,10 @@ import airflow
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.models import Variable
+from airflow.models.param import Param
 from airflow.operators.python_operator import PythonOperator
-from helpers.patient_data_update import  insert_update_to_cloud_sql
+from helpers.hospital_data import write_hos_to_csv
+from helpers.test_specs import write_tst_to_csv
 
 
 default_args = {
@@ -16,10 +18,10 @@ default_args = {
 
 
 dag = DAG(
-    'synthatic_patient_data_genaration_for_cloud_sql',
+    'hospital_data_and_test_specs_data__batch_load_dag',
     default_args=default_args,
-    description='dag to update and insert data into cloud sql',
-    schedule_interval="0 * * * *",
+    description='Dag to write hospital_data and test_specs to csv files',
+    schedule_interval=None,
 )
 
 
@@ -40,12 +42,24 @@ start_ = PythonOperator(
 )
 
 
-data_generation = PythonOperator(
-    task_id='generate_data',
-    python_callable=insert_update_to_cloud_sql,
+hospital_data_generation = PythonOperator(
+    task_id='generate_hospital_data',
+    op_kwargs={"test_param": "This is a test param"},
+    # params={"test_param": Param("This is a test param", type="string")},
+    python_callable=write_hos_to_csv,
     provide_context=True,
     dag=dag,
 )
+
+
+test_specs_data_generation = PythonOperator(
+    task_id='generate_test_specs_data',
+    python_callable=write_tst_to_csv,
+    provide_context=True,
+    dag=dag,
+)
+
+
 end_=PythonOperator(
     task_id='end',
     python_callable=end_dag,
@@ -56,8 +70,13 @@ end_=PythonOperator(
 
 
 
-start_>>data_generation>>end_
+start_>>hospital_data_generation>>test_specs_data_generation>>end_
 
 
 if __name__ == "__main__":
     dag.cli()
+
+
+
+
+
