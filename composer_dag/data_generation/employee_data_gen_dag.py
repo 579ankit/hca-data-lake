@@ -48,3 +48,4 @@ start_>>employee_data_generation>>end_
 
 if __name__ == "__main__":
     dag.cli()
+
