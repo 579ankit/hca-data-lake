@@ -1,0 +1,55 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: ["test/dataflow/**"]
+
+
+jobs:
+  terraform:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        working-directory: ./test/dataflow
+        shell: bash
+        
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        token_format: access_token
+        workload_identity_provider: 'projects/551629814272/locations/global/workloadIdentityPools/hca-pool/providers/hca-provider'
+        service_account: 'cicd-sa@hca-data-lake-poc.iam.gserviceaccount.com'
+    
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init 
+      
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check 
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -var-file=variables.tfvars
+
+    #Deploy resources in GCP
+    - name: Terraform Apply
+      run: terraform apply -var-file=variables.tfvars -auto-approve
+      
