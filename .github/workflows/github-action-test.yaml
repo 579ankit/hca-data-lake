@@ -37,4 +37,4 @@ jobs:
         uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
           path: './README.md'
-          destination: 'test_data_hca_datalake/README.md'
+          destination: 'test_data_hca_datalake/'
