@@ -3,8 +3,7 @@ name: Move to GCS Bucket
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - 'composer_dag/ingestion/'
+    paths: ["composer_dag/ingestion/**"]
 
 jobs:
   job_id:
