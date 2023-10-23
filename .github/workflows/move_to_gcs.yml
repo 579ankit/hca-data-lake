@@ -18,17 +18,14 @@ jobs:
       uses: actions/checkout@v3
 
     - id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
+      uses: 'google-github-actions/auth@v1'
+      with:
           token_format: access_token
           workload_identity_provider: 'projects/551629814272/locations/global/workloadIdentityPools/hca-pool/providers/hca-provider'
           service_account: 'cicd-sa@hca-data-lake-poc.iam.gserviceaccount.com'
-
 
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
         path: 'dags/'
-        destination: 'us-central1-test1-9f4ffe06-bucket' #'us-central1-hca-datalake-or-fd368b7e-bucket'
-
-
+        destination: 'gs://us-central1-test1-9f4ffe06-bucket'
