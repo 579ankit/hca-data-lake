@@ -9,7 +9,7 @@ from helpers.ingest_data import ingest_data
 
 
 BUCKET_NAME = 'hca-data-lake-poc_unstructured_data'  #add source_bucket_name
-FOLDER_PREFIX = 'table_name/' #add the new source/table_name as folder prefix.like: 'employee_data/'
+FOLDER_PREFIX = 'emp_table' #add the new source/table_name as folder prefix.like: 'employee_data/'
     
 default_args = {
     'depends_on_past': False,
