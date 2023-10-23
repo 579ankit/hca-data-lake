@@ -26,5 +26,5 @@ jobs:
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v1'
       with:
-        path: 'composer_dag/ingestion/**'
+        path: 'composer_dag/ingestion'
         destination: 'us-central1-test1-9f4ffe06-bucket/dags'
