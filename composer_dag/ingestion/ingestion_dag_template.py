@@ -33,33 +33,7 @@ move_data_task = PythonOperator(
     dag=dag,
 )
 
-ddl_statement = """CREATE EXTERNAL TABLE `hca_employee_data_landing.hca_employee_competencies`
-(
-  raw_employee_competencies JSON
-)
-WITH PARTITION COLUMNS
-(
-  date DATE,
-  time STRING
-)
-WITH CONNECTION `us-central1.employee_data_biglake_connection`
-OPTIONS(
-  hive_partition_uri_prefix = "gs://hca_employee-data_landing_20231005/employee_competencies_json/",
-  uris = ['gs://hca_employee-data_landing_20231005/employee_competencies_json/*.jsonl'],
-  format="CSV",
-  field_delimiter="|"
-);
-"""
-
-create_biglake_table = BigQueryExecuteQueryOperator(
-    task_id='create_bigquery_table',
-    sql=ddl_statement,
-    use_legacy_sql=False,
-    location='us',  # Replace with the desired location
-    dag=dag,
-)
-
-move_data_task>>ddl_statement
+move_data_task
 
 if __name__ == "__main__":
     dag.cli()
