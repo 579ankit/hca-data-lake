@@ -34,18 +34,24 @@ def get_all_the_files_as_blob(source_bucket_name, folder_prefix):
     return file_list
 
 def extract_date(source_file):
-    match = re.search(DATE_PATTERN, source_file)
-    if match:
-        date_string = match.group(0)
+    matches = re.finditer(DATE_PATTERN, source_file)
+    last_match = None
+    for match in matches:
+        last_match = match
+    if last_match:
+        date_string = last_match.group(0)
         year = date_string[:4]
         month = date_string[4:6]
         day = date_string[6:8]
         return f"{year}-{month}-{day}"
     
 def extract_time(source_file):
-    match = re.search(DATE_PATTERN, source_file)
-    if match:
-        date_string = match.group(0)
+    matches = re.finditer(DATE_PATTERN, source_file)
+    last_match = None
+    for match in matches:
+        last_match = match
+    if last_match:
+        date_string = last_match.group(0)
         hour = date_string[8:10]
         min = date_string[10:12]
         return f"{hour}:{min}"
