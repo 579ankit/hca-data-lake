@@ -133,6 +133,7 @@ def insert_update_to_cloud_sql():
         data=generate_data(row_count)
         logging.info("Inserting rows to SQL....!")
         # Inserting rows into mysql table
+        logging.info("Total rows to be insertes are ", len(data))
         for i in data:
             mydict = i
             columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in mydict.keys())

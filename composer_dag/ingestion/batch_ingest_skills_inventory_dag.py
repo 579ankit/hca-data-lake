@@ -15,18 +15,17 @@ default_args = {
     'start_date': datetime(2023, 10, 5),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@once',
 }
 
 dag = DAG(
-    'incremental_ingest_skills_inventory',
+    'batch_ingest_skills_inventory',
     default_args=default_args,
     description='DAG to move skills inventory in landing layer',
-    schedule_interval=None,
+    schedule_interval='@once',
 )
 
 move_incremental_data_task = PythonOperator(
-    task_id='incremental_ingest_skills_inventory',
+    task_id='batch_ingest_skills_inventory',
     python_callable= ingest_data,
     op_args=[BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX],
     dag=dag,

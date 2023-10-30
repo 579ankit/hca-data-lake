@@ -15,14 +15,13 @@ default_args = {
     'start_date': datetime(2023, 10, 5),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@hourly',
 }
 
 dag = DAG(
     'unstructured_ingest_lab_report_object_data',
     default_args=default_args,
     description='DAG to move lab report object data in landing layer',
-    schedule_interval=None,
+    schedule_interval='@hourly',
 )
 
 move_incremental_data_task = PythonOperator(

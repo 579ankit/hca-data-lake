@@ -15,14 +15,13 @@ default_args = {
     'start_date': datetime(2023, 10, 5),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@once',
 }
 
 dag = DAG(
     'batch_ingest_hospital_data',
     default_args=default_args,
     description='DAG to move hospital data in landing layer',
-    schedule_interval=None,
+    schedule_interval='@once',
 )
 
 move_incremental_data_task = PythonOperator(

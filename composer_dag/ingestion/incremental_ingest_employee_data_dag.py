@@ -15,14 +15,13 @@ default_args = {
     'start_date': datetime(2023, 10, 5),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@daily',
 }
 
 dag = DAG(
     'incremental_ingest_employee_data',
     default_args=default_args,
     description='DAG to move employee data in landing layer',
-    schedule_interval=None,
+    schedule_interval='@daily',
 )
 
 move_incremental_data_task = PythonOperator(
