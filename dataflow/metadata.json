@@ -17,7 +17,7 @@
         "regexes":["^gs://.*?/$"]
        },
        {
-        "name":"Window_size",
+        "name":"window_size",
         "label":"Window interval in minutes (default 10 mins)",
         "helpText":"Window interval in minutes for grouping incoming messages.",
         "regexes":["^[1-9][0-9]*$"],

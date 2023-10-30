@@ -22,7 +22,7 @@ from apache_beam.io import fileio
 class GroupMessagesByFixedWindows(PTransform):
     # A composite transform that groups Pub/Sub messages based on publish time
         
-    def __init__(self, window_size, num_shards=2):
+    def __init__(self, window_size, num_shards):
         # Set window size to 60 seconds.
         self.window_size = int(window_size * 60)
         self.num_shards = num_shards
@@ -35,8 +35,7 @@ class GroupMessagesByFixedWindows(PTransform):
             >> WindowInto(FixedWindows(self.window_size))
             # Assign a random key to each windowed element based on the number of shards.
             | "Add key" >> WithKeys(lambda _: random.randint(0, self.num_shards - 1))
-            # Group windowed elements by key. All the elements in the same window must fit
-            # memory for this. If not, you need to use `beam.util.BatchElements`.
+            # Group windowed elements by key. 
             | "Group by key" >> GroupByKey()
         )
 
@@ -50,16 +49,23 @@ class ExtractMsgs(DoFn):
                 
 def hive_filenaming(*args):
   #hive file partitioning 
-  file_name = fileio.destination_prefix_naming()(*args)
-  destination = file_name.split('----')[0]  
-  utc_now=datetime.utcnow()
-  date_str=utc_now.strftime("%Y-%m-%d")
-  time_str=utc_now.strftime("%H:%M")
-  datekey="date="+date_str
-  timekey="time="+time_str
-  filedir="/".join([datekey,timekey]) + "/"
-  filename = filedir+ destination + ".jsonl"
-  return  filename              
+  file_format= (
+    'date={date}/time={time}/{prefix}-'
+    '{shard:05d}-of-{total_shards:05d}.jsonl'
+    )
+
+  window_end=args[0].end.to_utc_datetime()
+  date=window_end.strftime("%Y-%m-%d")
+  time=window_end.strftime("%H:%M")
+  
+  kwargs = {
+      'date':date,
+      'time':time,
+      'prefix':str(args[5]),
+      'shard': int(args[2]),
+      'total_shards': int(args[3])
+  }
+  return  file_format.format(**kwargs)             
             
 def run(input_subscription, output_path,window_size,num_shards, pipeline_args=None):
     # Set `save_main_session` to True so DoFns can access globally imported modules.
