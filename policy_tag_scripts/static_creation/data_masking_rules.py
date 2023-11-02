@@ -55,14 +55,4 @@ def add_masking_rules_to_policy_tags(project_id, location, policy_tag_name, poli
 
     print(f"Created data policy: {response.name}")
 
-
-
-
-
-
-
-
-
-
-
 # list_masking_rules()

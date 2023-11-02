@@ -64,14 +64,43 @@ if __name__ == "__main__":
     dataset_name = input("Enter Dataset name: ")
     table_name = input("Enter table name: ")
 
-    apply_columns = ["last_name","date_of_birth","gender","address","phone_number","email_address","emergency_contact","test_results"]
-    list_taxonomies(project_id,location)
+    list_taxonomies(location)
     taxonomy_name = input("Enter taxonomy name from above where policy tags exists: ")
-    taxonomy_id = get_taxonomy_id(project_id,location,taxonomy_name)
+    taxonomy_id = get_taxonomy_id(location,taxonomy_name)
 
     if taxonomy_id:
-        apply_policy_tags = ["name","dob","gender","address","phone","email","phone","test_results"]
-        columns_policy_tags = dict(zip(apply_columns, apply_policy_tags))
+        columns_policy_tags = {
+            'first_name': 'name',
+            'last_name': 'name',
+            'date_of_birth': 'date',
+            'address': 'address',
+            'phone_number': 'phone',
+            'email_address': 'email',
+            'emergency_contact': 'phone',
+            'test_timestamp': 'date',
+            'test_result_value': 'results',
+            'hospital_name': 'name',
+            'hospital_address': 'address',
+            'hospital_district': 'address',
+            'hospital_state': 'address',
+            'hospital_zipcode': 'address',
+            'lab_report_uri': 'hash_value',
+            'ssn': 'number',
+            'email': 'email',
+            'district': 'address',
+            'state': 'address',
+            'zipcode': 'address',
+            'date_of_joining_company': 'date',
+            'GPA': 'results',
+            'workplace_name': 'name',
+            'workplace_address': 'address',
+            'workplace_district': 'address',
+            'workplace_state': 'address',
+            'workplace_zipcode': 'address',
+            'phone': 'phone',
+            'patient_name': 'name',
+            'employee_name': 'name'
+            }
         apply_policy_tags_to_bq_table(project_id, dataset_name, table_name, columns_policy_tags, taxonomy_id)
     else:
         print("Policy Taxonomy not found")
