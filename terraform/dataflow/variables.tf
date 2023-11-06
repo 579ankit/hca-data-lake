@@ -28,15 +28,15 @@ variable "dataflow_job_parameters" {
   type = list(object({
     input_topic : string,
     input_subscription : string,
-    output_path : string
+    output_path : string,
+    window_size : optional(number),
+    num_shards : optional(number)
   }))
 }
 
 variable "dataflow_vpc_network" {
   description = "Network to be used by dataflow workers"
   type        = string
-  # default = "default"
-
 }
 
 variable "dataflow_subnetwork_selflink" {

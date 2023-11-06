@@ -16,6 +16,8 @@ resource "google_dataflow_flex_template_job" "pubsub_to_gcs" {
   parameters = {
     input_subscription = each.value.input_subscription
     output_path        = each.value.output_path
+    window_size        = each.value.window_size
+    num_shards         = each.value.num_shards
   }
   skip_wait_on_job_termination = false
 }
