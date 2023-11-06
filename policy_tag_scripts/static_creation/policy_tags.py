@@ -142,7 +142,7 @@ if __name__ == "__main__":
         {
             "name": "hash_value",
             "description": "",
-            "masking_rule": "Hash (SHA-256)"
+            "masking_rule": "SHA256"
         }    
 
     ]
