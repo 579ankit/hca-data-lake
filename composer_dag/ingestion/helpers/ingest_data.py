@@ -2,6 +2,7 @@ import os
 import re
 from datetime import datetime, timedelta
 from google.cloud import storage
+from google.cloud import bigquery
 
 DATE_PATTERN = r'\d{12}'
 SOURCE_STORAGE_CLIENT = storage.Client(project='hca-usr-hin-datalake-poc')
@@ -9,6 +10,7 @@ DESTINATION_STORAGE_CLIENT = storage.Client(project='hca-usr-hin-landing-datalak
 
 def ingest_data(BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX):
     file_list = get_all_the_files_as_blob(BUCKET_NAME, FOLDER_PREFIX)
+    table_name = f"hca_{FOLDER_PREFIX.replace('/', '')}"
 
     for each_file in file_list:
         each_file_name = each_file.name
@@ -23,6 +25,20 @@ def ingest_data(BUCKET_NAME, DESTINATION_BUCKET_NAME, FOLDER_PREFIX):
         destination_bucket = DESTINATION_STORAGE_CLIENT.bucket(DESTINATION_BUCKET_NAME)
         new_blob = source_bucket.copy_blob(each_file, destination_bucket, destination_blob_name)
         each_file.delete()
+    if "employee-data" in DESTINATION_BUCKET_NAME:
+        sync_biglake_to_bq("hca_employee_data_landing", "hca_employee_managed_table", table_name)
+    if "hospital-reports" in DESTINATION_BUCKET_NAME:
+        sync_biglake_to_bq("hca_hospital_reports_landing", "hca_hospital_reports_managed_table", table_name)
+
+def sync_biglake_to_bq(landing_dataset, managed_dataset, table_name):
+    client = bigquery.client()
+    query = f"""
+            CREATE OR REPLACE TABLE hca-usr-hin-landing-datalake.{managed_dataset}.{table_name} AS (
+            SELECT *
+            FROM
+            hca-usr-hin-landing-datalake.{landing_dataset}.{table_name}
+            );"""
+    res = client.query(query).result()
 
 def get_all_the_files_as_blob(source_bucket_name, folder_prefix):
     file_list = []
