@@ -13,7 +13,7 @@ def hello_http(request):
     
     for call in calls:
 
-      input_str = str(call)
+      input_str = str(call[0])
       output_str = deindentify.deidentify_deterministic(project, input_str)
       return_value.append(output_str)
 
