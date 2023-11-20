@@ -19,7 +19,7 @@ def deidentify_deterministic(
         request={
             "parent": parent,
             "inspect_template_name": "projects/hca-data-lake-poc/locations/global/inspectTemplates/dlp_inspect_crypto_1107_01",
-            "deidentify_template_name": "projects/hca-data-lake-poc/locations/global/deidentifyTemplates/dlp_de-identify_1107_01",
+            "deidentify_template_name": "projects/hca-data-lake-poc/locations/global/deidentifyTemplates/dlp_de_identify_1108",
             "item": item,
         }
     )
