@@ -9,7 +9,7 @@ app = flask.Flask(__name__)
 @app.route("/", methods=['POST'])
 def hello_world():
     project = "hca-data-lake-poc"
-    key_name= "KMS_KEY_PATH"
+    key_name= "SECRET_KEY_PATH"
     secret_name = "SECRET_NAME"
     wrapped_key = deidentify.access_secret_version(project,secret_name)
  

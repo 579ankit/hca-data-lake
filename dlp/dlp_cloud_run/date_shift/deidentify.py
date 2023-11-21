@@ -137,9 +137,6 @@ def deidentify_with_date_shift(
         }
     }
 
-    # Write to CSV helper methods
-    def write_header(header: types.storage.FieldId) -> str:
-        return header.name
 
     def write_data(data: types.Value) -> str:
         if data.date_value:
