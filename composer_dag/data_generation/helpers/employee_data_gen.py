@@ -146,6 +146,7 @@ def add_inconsistencies(output_df, total_error_records):
     
     return output_df
 
+
 def employee_data_gen_start_function():
 
     fake=faker.Faker()
@@ -160,10 +161,11 @@ def employee_data_gen_start_function():
     total_records=config_file.total_records
     total_error_records=int(total_records*0.02)
     job_type=config_file.job_type
-    employment_status_active=config_file.employment_status_active
     employment_status_inactive=config_file.employment_status_inactive
 
     floor_list = [i for i in range(1,no_of_floors+1)] 
+
+    employment_status_active=config_file.employment_status_active
 
 
     #Add emp_id
@@ -273,3 +275,4 @@ def employee_data_gen_start_function():
     output_file_name_bkp=config_file.destination_file_name_prefix+".parquet"
     output_file_with_path_bkp=GCS_URI_PREFIX+bucket_name+"/"+employee_data_folder_name+"/"+output_file_name_bkp
     output_df.to_parquet(output_file_with_path_bkp,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
+

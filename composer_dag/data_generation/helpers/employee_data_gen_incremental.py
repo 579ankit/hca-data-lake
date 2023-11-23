@@ -3,6 +3,7 @@ import random
 from datetime import datetime
 import helpers.employee_data_gen_config as config_file
 from google.cloud import storage
+import numpy as np
 
 GCS_URI_PREFIX="gs://"
 
@@ -80,6 +81,28 @@ def change_email(current_email):
     new_email = email_username_new + "@" + email_domain
     return new_email
 
+
+def add_inconsistencies(output_df):
+
+    error_records=output_df.tail(3).reset_index(drop=True)
+    error_records=error_records[["emp_id","ssn","workplace_id","floor_number"]]
+    error_records['error_category'] = np.random.choice(["ssn","workplace_id","floor_number"], len(error_records))
+    error_records["ssn"]=error_records[["ssn","error_category"]].apply(lambda x: str(random.randint(100000,1000000)) if x.error_category=="ssn" else x.ssn,axis=1)
+    error_records["workplace_id"]=error_records[["workplace_id","error_category"]].apply(lambda x: np.nan if x.error_category=="workplace_id" else x.workplace_id,axis=1)
+    error_records["floor_number"]=error_records[["floor_number","error_category"]].apply(lambda x: random.randint(30,40) if x.error_category=="floor_number" else x.floor_number,axis=1)
+    error_records.drop(columns=["error_category"],inplace=True)
+
+    for index, row in error_records.iterrows():
+        emp_id = row['emp_id']
+        ssn = row['ssn']
+        workplace_id = row['workplace_id']
+        floor_number = row['floor_number']
+        output_df.loc[output_df['emp_id']==emp_id,'ssn']=ssn
+        output_df.loc[output_df['emp_id']==emp_id,'workplace_id']=workplace_id
+        output_df.loc[output_df['emp_id']==emp_id,'floor_number']=floor_number
+    
+    return output_df
+
 def employee_data_gen_incremental_start_function():
 
     project_name=config_file.project_name
@@ -101,18 +124,21 @@ def employee_data_gen_incremental_start_function():
     employee_df_new=employee_df[employee_df.emp_id.isin(emp_id_with_change) == True]
     employee_df_new.reset_index(drop=True,inplace=True)
 
-    employee_df_new["phone"]=employee_df_new["emp_id"].apply(lambda x: gen_phone() if x in emp_id_phone_numbers_change else x)
+    employee_df_new["phone"]=employee_df_new.apply(lambda x: gen_phone() if x.emp_id in emp_id_phone_numbers_change else x.phone,axis=1)
     employee_df_new["email"]=employee_df_new.apply(lambda x: change_email(x.email) if x.emp_id in emp_id_email_change else x.email,axis=1)
     employee_df_new["source_timestamp"]=employee_df_new["emp_id"].apply(lambda x: datetime.today())
+    employee_df_new = add_inconsistencies(employee_df_new)
 
     employee_df_new[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]]=employee_df_new[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]].apply(pd.to_datetime)
+
+    #Apply integer format to relevant fields
+
+    employee_df_new[["zipcode","floor_number"]]=employee_df_new[["zipcode","floor_number"]].apply(pd.to_numeric)
 
     destination_bucket_name=get_bucket_name(project_name,config_file.bucket_prefix)   
     output_file_name=config_file.destination_file_name_prefix+str(datetime.now().strftime('%Y%m%d%H%M%S'))+".parquet"
     output_file_with_path=GCS_URI_PREFIX+destination_bucket_name+"/"+config_file.destination_folder_name+"/"+output_file_name
 
     employee_df_new.to_parquet(output_file_with_path,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
-
-
 
 
