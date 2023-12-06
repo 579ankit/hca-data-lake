@@ -28,7 +28,11 @@ def generate_hospital_id(number):
     emp_id_prefix = "HOS"
     emp_id_counter = number
     while True:
-        yield f"{emp_id_prefix}-{emp_id_counter:04d}"
+        if number%4==0:
+            yield ""
+        else:
+            yield f"{emp_id_prefix}-{emp_id_counter:04d}"
+        # yield f"{emp_id_prefix}-{emp_id_counter:04d}"
         emp_id_counter += 1
 
 
@@ -100,6 +104,7 @@ for i in hospitals:
 
 
 def upload_to_gcs(bucket_name, dest_blob_name):
+    logging.info("****************hospital_data_upload**********************")    
     storage_client=storage_client = storage.Client()
     bucket=storage_client.bucket(bucket_name)
     blob=bucket.blob(dest_blob_name)
@@ -109,14 +114,15 @@ def upload_to_gcs(bucket_name, dest_blob_name):
 
 
 def write_hos_to_csv(**kwargs):
-    logging.info(kwargs["test_param"])
+    # logging.info(kwargs["test_param"])
     with open("./hospital_data_temp.csv", "w", newline='') as f:
         writer = csv.DictWriter(f, fieldnames=Columns)
         writer.writeheader()
         writer.writerows(data)
     time_now=datetime.now().strftime("%Y%m%d%H%M")
     upload_to_gcs("hca_hospital-reports_source_20231005", "hospital_data/hca_hospital_data_full_{}.csv".format(time_now))
-       
+    upload_to_gcs("us-central1-hca-datalake-or-34fa5e51-bucket", "data/csvs/hospital_data.csv")
+   
 if __name__=='__main__':
     pass
     # Write the data to a CSV file

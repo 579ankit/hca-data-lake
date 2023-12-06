@@ -31,44 +31,29 @@ Columns=["lab_report_id", "patient_id", "test_id", "test_mnemonic","test_timesta
 
 
 
-# def generate_patient_id(number):
-#     emp_id_prefix = "PAT"
-#     emp_id_counter = number
-#     while True:
-#         yield f"{emp_id_prefix}-{emp_id_counter:04d}"
-#         emp_id_counter += 1
-
-
-
-
-# Generate 20 rows of data
 data = []
-# print(test_ids)
-# for i in test_ids:
-#     print(i, test_units[i])
+
+
 
 
 def generate_data(patient_ids):
     for i in range(len(patient_ids)):
         lab_report_id=fake.uuid4()
-        # patient_id=next(generate_patient_id(i+1))
         patient_id=patient_ids[i]
         test_id=random.choice(test_ids)
-        # print(test_id, test_details[test_id])
-        # print("*********")
-        # ini_list=test_details[test_id][2]
-        # mnemonics_lst=ast.literal_eval(ini_list)
         mnemonics_lst=test_details[test_id][2].split("|")
         test_mnemonic1=random.choice(mnemonics_lst)
         test_mnemonic2=random.choice(mnemonics_lst)
         test_mnemonic3=random.choice(mnemonics_lst)
-        test_timestamp=test_details[test_id][11]
-        test_date1=datetime.datetime.strptime(test_timestamp, "%Y-%m-%d %H:%M:%S")
+        # test_timestamp=test_details[test_id][11]
+        test_timestamp=fake.date_between(start_date='-1y')
+        test_date1=test_timestamp
+        # test_date1=datetime.datetime.strptime(test_timestamp, "%Y-%m-%d %H:%M:%S")
         test_date2=test_date1+relativedelta(months=2, days=6)
         test_date3=test_date2+relativedelta(months=4, days=4)
+        # print(test_units)
         units_list=list(test_units[test_id].items())
         # print(units_list)
-        # print("+++++++++++")
         item1=random.choice(units_list)
         unit_of_mesurement1=item1[0]
         cf1=item1[1]
@@ -92,6 +77,12 @@ def generate_data(patient_ids):
         # if cf3!="No conversion":
             test_result3=round(test_result3/float(cf3), 5)
         hospital_id=random.choice(hospital_ids)
+        if hospital_id!="":
+            hospital_id_num=int(hospital_id.split("-")[1])
+            if hospital_id_num%10==0:
+                test_result1=0
+                test_result2=0
+                test_result3=0
         test_type=test_details[test_id][5]
         source_timestamp=test_details[test_id][10]
         created_timestamp=test_details[test_id][11]
@@ -109,34 +100,8 @@ def generate_data(patient_ids):
             "source_timestamp": source_timestamp,
             "created_timestamp": created_timestamp,
         }
-        # row2 = {
-        #     "lab_report_id": fake.uuid4(),
-        #     "patient_id": patient_id,
-        #     "test_id": test_id,
-        #     "test_mnemonic": test_mnemonic2,
-        #     "test_timestamp": test_date2,
-        #     "test_result_value": test_result2,
-        #     "unit_of_mesurement": unit_of_mesurement2,
-        #     "hospital_id": hospital_id,
-        #     "test_type": test_type,
-        #     "source_timestamp": source_timestamp,
-        #     "created_timestamp": created_timestamp,
-        #     # "log_timestamp": fake.date_time(),
-        # }
-        # row3 = {
-        #     "lab_report_id": fake.uuid4(),
-        #     "patient_id": patient_id,
-        #     "test_id": test_id,
-        #     "test_mnemonic": test_mnemonic3,
-        #     "test_timestamp": test_date3,
-        #     "test_result_value": test_result3,
-        #     "unit_of_mesurement": unit_of_mesurement3,
-        #     "hospital_id": hospital_id,
-        #     "test_type": test_type,
-        #     "source_timestamp": source_timestamp,
-        #     "created_timestamp": created_timestamp,
-        #     # "log_timestamp": fake.date_time(),
-        # }
+        # row2 = {}
+        # row3 = {}
         data.append(row1)
         # data.append(row2)
         # data.append(row3)
@@ -253,18 +218,8 @@ def write_lrd_to_csv():
 
 if __name__=='__main__':
     pass
-    # # Write the data to a CSV file
-    # with open("./data/lab_report_data.csv", "w", newline='') as f:
-    #     writer = csv.DictWriter(f, fieldnames=Columns)
-    #     writer.writeheader()
-    #     writer.writerows(data)
 
 
-    # # Write the datat to json    
-    # data_json_obj=json.dumps(data, default=str)
-    # # print(data_json_obj)
-    # with open("./data/lab_report_data.json", "w") as outfile:
-    #     outfile.write(data_json_obj)
 
 
 

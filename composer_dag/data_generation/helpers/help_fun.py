@@ -1,4 +1,5 @@
 from google.cloud import storage
+import logging
 
 
 def pick_latest_file(matched_blobs):
@@ -13,13 +14,14 @@ def pick_latest_file(matched_blobs):
 
 
 def get_matching_file_path(project_name,bucket_name,folder_name,employee_data_file_prefix):
+    logging.info("Inside get_matching_file_path......!")
     client = storage.Client(project_name)
     matched_blobs={}
     for blob in client.list_blobs(bucket_name, prefix=folder_name):
         blob_name=blob.name.replace(folder_name+"/","")
         if blob_name.startswith(employee_data_file_prefix):
             matched_blobs[blob.name] = blob.time_created
-     
+    print("matched_blobs :", matched_blobs)
     matching_file = pick_latest_file(matched_blobs)
     matching_file_path = "gs://"+bucket_name+"/"+matching_file
     return matching_file_path, bucket_name, matching_file

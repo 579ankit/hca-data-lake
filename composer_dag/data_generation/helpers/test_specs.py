@@ -17,7 +17,11 @@ def generate_test_id(number):
     test_id_prefix = "TST"
     test_id_counter = number
     while True:
-        yield f"{test_id_prefix}-{test_id_counter:04d}"
+        if number%4==0:
+            yield ""
+        else:
+            yield f"{test_id_prefix}-{test_id_counter:04d}"
+        # yield f"{test_id_prefix}-{test_id_counter:04d}"
         test_id_counter += 1
 count=0
 
@@ -28,8 +32,7 @@ test_mnemonic_variations={}
 with open("/home/airflow/gcs/data/csvs/lab_test_sample_data.csv", 'r') as file:
     csvreader = csv.reader(file)
     for row in csvreader:
-        # if row[1]!='test_name' and row[1] not in test_names:
-        if row[1]!='test_name' :          #its actually test_name at index 1
+        if row[1]!='test_name' :          
             if row[1] in test_names:
                 source_test_units[row[1]].append(row[6])
                 source_unit_of_measurement=row[6]
@@ -42,14 +45,24 @@ with open("/home/airflow/gcs/data/csvs/lab_test_sample_data.csv", 'r') as file:
                 source_test_units[row[1]]=[row[6]]
                 # test_mnemonic_variations[row[1]]=[i for i in row[2].split("||")]
                 test_mnemonic_variations[row[1]]=row[2].replace("||", "|")
-                source_unit_of_measurement=row[6]
+                if test_id!="":
+                    test_id_num=int(test_id.split("-")[1])
+                    if test_id_num%5==0:
+                        source_unit_of_measurement=""
+                    else:
+                        source_unit_of_measurement=row[6]
+                # source_unit_of_measurement=row[6]
                 test_mnemonic_standard=row[3]
                 test_mnemonic_variation=test_mnemonic_variations[row[1]]
                 test_name=row[1]
                 test_description=row[4]
                 test_type=row[5]
                 standard_unit_of_measurement=row[7]
-                conversion_factor=row[10]
+                if test_id_num%6==0:
+                    conversion_factor=""
+                else:
+                    conversion_factor=row[10]
+                # conversion_factor=row[10]
                 min_value=row[8]
                 max_value=row[9]
                 source_timestamp=fake.date_time_between(start_date='-1y')
@@ -85,7 +98,8 @@ def write_tst_to_csv():
         writer.writeheader()
         writer.writerows(test_spec_data)
     time_now=datetime.now().strftime("%Y%m%d%H%M")
-    upload_to_gcs("hca_hospital-reports_source_20231005", "test_specs/hcs_test_specs_full_{}.csv".format(time_now))
+    upload_to_gcs("hca_hospital-reports_source_20231005", "test_specs/hca_test_specs_full_{}.csv".format(time_now))
+    upload_to_gcs("us-central1-hca-datalake-or-34fa5e51-bucket", "data/csvs/test_specs.csv")
 
 
 
