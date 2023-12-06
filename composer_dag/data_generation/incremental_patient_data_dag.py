@@ -25,7 +25,6 @@ dag = DAG(
 
 def start_dag():
     logging.info("Starting the DAG...!")
-    logging.info(Variable.get("var1"))
 
 
 def end_dag():
@@ -61,3 +60,8 @@ start_>>data_generation>>end_
 
 if __name__ == "__main__":
     dag.cli()
+
+
+
+
+
