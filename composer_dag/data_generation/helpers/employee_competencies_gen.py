@@ -91,7 +91,6 @@ def callback(future: pubsub_v1.publisher.futures.Future) -> None:
 def stream_to_pubsub(project_name,json_list):
 
     batch_settings = pubsub_v1.types.BatchSettings(
-        max_messages=10, # default 100
         max_bytes=1024, # default 1 MB
         max_latency=1, # default 10 ms
     )
@@ -105,7 +104,7 @@ def stream_to_pubsub(project_name,json_list):
         publish_future = publisher.publish(topic_path, data=json_data.encode("utf-8"))
         publish_future.add_done_callback(callback)
         publish_futures.append(publish_future)
-        time.sleep(1)
+        time.sleep(0.02)
 
     futures.wait(publish_futures, return_when=futures.ALL_COMPLETED)
 

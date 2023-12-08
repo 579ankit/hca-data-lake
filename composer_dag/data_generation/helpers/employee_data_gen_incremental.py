@@ -140,5 +140,5 @@ def employee_data_gen_incremental_start_function():
     output_file_with_path=GCS_URI_PREFIX+destination_bucket_name+"/"+config_file.destination_folder_name+"/"+output_file_name
 
     employee_df_new.to_parquet(output_file_with_path,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
-
+    
 

@@ -17,6 +17,7 @@ def change_skill_or_proficiency(emp_skills,all_skills_list):
       new_all_emp_skills=[]
       current_skills=[]
       choice_gen=[i+1 for i in range(0,len(emp_skills))]
+
       proficiency_to_update=random.choice(choice_gen)
       counter=1
       for emp_skill in emp_skills:
@@ -111,7 +112,6 @@ def callback(future: pubsub_v1.publisher.futures.Future) -> None:
 def stream_to_pubsub(employee_competencies_new, project_name, topic_name):
 
     batch_settings = pubsub_v1.types.BatchSettings(
-        max_messages=10, # default 100
         max_bytes=1024, # default 1 MB
         max_latency=1, # default 10 ms
     )
@@ -125,7 +125,7 @@ def stream_to_pubsub(employee_competencies_new, project_name, topic_name):
         publish_future = publisher.publish(topic_path, data=json_data.encode("utf-8"))
         publish_future.add_done_callback(callback)
         publish_futures.append(publish_future)
-        time.sleep(1)
+        # time.sleep(1)
 
 
     return futures.wait(publish_futures, return_when=futures.ALL_COMPLETED)
@@ -201,20 +201,23 @@ def employee_competencies_incremental_start_function():
     output_file_name=config_file.destination_file_name_prefix+".json"
 
     source_bucket_name=get_bucket_name(source_bucket_prefix,storage_client)
-    employee_data_file=get_matching_file_path(project_name, source_bucket_name, source_folder_name, employee_data_file_prefix)
+    # employee_data_file=get_matching_file_path(project_name, source_bucket_name, source_folder_name, employee_data_file_prefix)
     employee_competencies_file=get_matching_file_path(project_name, source_bucket_name, source_folder_name, employee_competencies_file_prefix)
     floor_skill_association_file=get_matching_file_path(project_name, source_bucket_name, source_folder_name, floor_skill_association_file_prefix)
 
-    employee_df = pd.read_parquet(employee_data_file)
+    # employee_df = pd.read_parquet(employee_data_file)
     employee_competencies = pd.read_json(employee_competencies_file)
     floor_skill_association_df=pd.read_csv(floor_skill_association_file)
 
-    emp_id_list=employee_df["emp_id"].to_list()
-    sample_for_change=int(len(emp_id_list)*0.005)
+    emp_id_list=employee_competencies["emp_id"].to_list()
+    sample_for_change=int(len(emp_id_list)*0.001)
 
     emp_id_with_change=random.sample(emp_id_list,sample_for_change)
 
-    employee_competencies_new=employee_competencies[employee_df.emp_id.isin(emp_id_with_change) == True]
+    employee_competencies_new=employee_competencies[employee_competencies.emp_id.isin(emp_id_with_change) == True]
+
+    employee_competencies_new = employee_competencies_new[employee_competencies_new['skills'].apply(lambda x: len(x) > 0)]
+
     employee_competencies_new.reset_index(drop=True,inplace=True)
     new_skills_list=employee_competencies_new["skills"].to_list()
 
@@ -246,6 +249,7 @@ def employee_competencies_incremental_start_function():
         output_file_with_bucket=source_folder_name+"/"+output_file_name
 
         write_as_json(source_bucket_name,output_file_with_bucket, json_list)
+
 
 
 
