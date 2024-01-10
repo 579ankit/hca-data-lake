@@ -3,10 +3,10 @@ from data_masking_rules import list_masking_rules
 from data_masking_rules import add_masking_rules_to_policy_tags
 
 
-def get_taxonomy_id(project_id,location,taxonomy_name):
+def get_taxonomy_id(location,taxonomy_name):
 
     client = datacatalog_v1.PolicyTagManagerClient()
-    parent = f"projects/{project_id}/locations/{location}"
+    parent = f"projects/hca-usr-hin-proc-datalake/locations/{location}"
     taxonomies = client.list_taxonomies(request={"parent": parent})
 
     for taxonomy in taxonomies:
@@ -16,10 +16,10 @@ def get_taxonomy_id(project_id,location,taxonomy_name):
     return 0
 
 
-def list_taxonomies(project_id,location):
+def list_taxonomies(location):
 
     client = datacatalog_v1.PolicyTagManagerClient()
-    parent = f"projects/{project_id}/locations/{location}"
+    parent = f"projects/hca-usr-hin-proc-datalake/locations/{location}"
     taxonomies = client.list_taxonomies(request={"parent": parent})
 
     print("Available Taxonomy List:  ")
@@ -64,7 +64,7 @@ def create_taxonomy(taxonomy_name, project_id, location):
 
     taxonomy = datacatalog_v1.Taxonomy()
     taxonomy.display_name = taxonomy_name
-    taxonomy.description = "A policy tag taxonomy for Sensitive Data"
+    taxonomy.description = "A policy taxonomy for Sensitive Data"
 
     taxonomy = client.create_taxonomy(parent=parent, taxonomy=taxonomy)
     print(f"Created taxonomy {taxonomy.name}")
@@ -83,11 +83,18 @@ def create_policy_tags(taxonomy_id,project_id, location, policy_tags: list = Non
         policy_tag = datacatalog_v1.PolicyTag()
         policy_tag.display_name = policy_tag_data.get('name')
         policy_tag.description = policy_tag_data.get('description')
+
+        if policy_tag_data.get('parent_policy_tag'):
+            parent_policy_tag_name = f"{taxonomy_id}/policyTags/{get_policy_tag_id(policy_tag_data.get('parent_policy_tag'),taxonomy_id)}"
+            policy_tag.parent_policy_tag = parent_policy_tag_name
+
+        
         policy_tag = client.create_policy_tag(parent=taxonomy_id, policy_tag=policy_tag)
         print(f"Created policy tag {policy_tag.name}")
 
-        # add masking rules calling
-        add_masking_rules_to_policy_tags(project_id,location,policy_tag_data.get('name'),policy_tag.name,policy_tag_data.get('masking_rule'))
+        if policy_tag_data.get('masking_rule'):
+            # add masking rules calling
+            add_masking_rules_to_policy_tags(project_id,location,policy_tag_data.get('name'),policy_tag.name,policy_tag_data.get('masking_rule'))
 
 
 
@@ -100,40 +107,72 @@ if __name__ == "__main__":
 
     policy_tags = [
         {
+            "name": "High",
+            "description": "",
+        },
+        {
+            "name": "Medium",
+            "description": "",
+        },
+        {
+            "name": "Low",
+            "description": "",
+        },
+        {
             "name": "email",
             "description": "",
-            "masking_rule": f"projects/{project_id}/datasets/custom_rule/routines/emailMask"
+            "masking_rule": f"projects/{project_id}/datasets/test_custom_data_masking_rules/routines/emailMask",
+            "parent_policy_tag": "High"
+            
         },
         {
             "name": "phone",
             "description": "",
-            "masking_rule": "FIRST_FOUR_CHARACTERS"
+            "masking_rule": "FIRST_FOUR_CHARACTERS",
+            "parent_policy_tag": "High"
+        },
+        {
+            "name": "number",
+            "description": "",
+            "masking_rule": "FIRST_FOUR_CHARACTERS",
+            "parent_policy_tag": "High"
         },
         {
             "name": "name",
             "description": "",
-            "masking_rule": f"projects/{project_id}/datasets/custom_rule/routines/Alphanumeric_Mask"
+            "masking_rule": f"projects/{project_id}/datasets/test_custom_data_masking_rules/routines/Alphanumeric_Mask",
+            "parent_policy_tag": "Medium"
         },
         {
-            "name": "dob",
+            "name": "date",
             "description": "",
-            "masking_rule": "DATE_YEAR_MASK"
+            "masking_rule": "DATE_YEAR_MASK",
+            "parent_policy_tag": "High"
         },
         {
             "name": "address",
             "description": "",
-            "masking_rule": f"projects/{project_id}/datasets/custom_rule/routines/Alphanumeric_Mask"
+            "masking_rule": f"projects/{project_id}/datasets/test_custom_data_masking_rules/routines/Alphanumeric_Mask",
+            "parent_policy_tag": "Medium"
         },
         {
-            "name": "gender",
+            "name": "results",
             "description": "",
-            "masking_rule": f"projects/{project_id}/datasets/custom_rule/routines/Alphanumeric_Mask"
+            "masking_rule": "DEFAULT_MASKING_VALUE",
+            "parent_policy_tag": "Low"
         },
         {
-            "name": "test_results",
+            "name": "alphanumeric",
             "description": "",
-            "masking_rule": "DEFAULT_MASKING_VALUE"
+            "masking_rule": f"projects/{project_id}/datasets/test_custom_data_masking_rules/routines/Alphanumeric_Mask",
+            "parent_policy_tag": "Medium"
         },
+        {
+            "name": "hash_value",
+            "description": "",
+            "masking_rule": "SHA256",
+            "parent_policy_tag": "High"
+        }    
 
     ]
     # print(policy_tags)

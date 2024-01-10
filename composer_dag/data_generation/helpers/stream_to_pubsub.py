@@ -9,8 +9,7 @@ from helpers.help_funs import get_matching_file_path
 
 
 project_id = 'hca-usr-hin-datalake-poc'
-# topic_name = 'hca_lab_report_data_json'
-topic_name='hca_lab_report_data_json'
+topic_name = 'hca_lab_report_data_json'
 bucket_name="us-central1-hca-datalake-or-34fa5e51-bucket"
 
 
@@ -36,22 +35,18 @@ def latest_blob():
     print("get latest file from gcs")
 
 
-# Get latest lab_report_data file
-file_path, bucket_, matching_file=get_matching_file_path("hca-usr-hin-datalake-poc", "test_bucket_09122023", "lab_report_data/json", "lab_report_data_")
 
 
 def start_stream():
-    # print("bucket is :",json_dest_bucket)
-    # print("blob is :",json_dest_blob)    
+    # Get latest lab_report_data file
+    file_path, bucket_, matching_file=get_matching_file_path("hca-usr-hin-datalake-poc", "test_bucket_09122023", "lab_report_data/json", "lab_report_data_")
     logging.info("File is : ", matching_file)    
     storage_client= storage.Client()
-    # bucket=storage_client.bucket(json_dest_bucket)
-    # blob=bucket.blob(json_dest_blob)
-    # blobs=storage_client.list_blobs(bucket_name, prefix="data/json")
+
+
     bucket=storage_client.bucket(bucket_)
 
 
-    # blob=bucket.blob("data/json/lab_report_data.json")
     blob=bucket.blob(matching_file)
     blob.download_to_filename("./lab_report_data_temp.json")
     # file=open("/home/airflow/gcs/data/json/lab_report_data_temp.json")

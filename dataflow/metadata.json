@@ -17,17 +17,17 @@
         "regexes":["^gs://.*?/$"]
        },
        {
-        "name":"Window_size",
+        "name":"window_size",
         "label":"Window interval in minutes (default 10 mins)",
         "helpText":"Window interval in minutes for grouping incoming messages.",
-        "regexes":["^\\d"],
+        "regexes":["^[1-9][0-9]*$"],
         "isOptional":true
        },
        {
         "name":"num_shards",
         "label":"Number of shards (default 1 shard)",
         "helpText":"Number of files to be written per window",
-        "regexes":["^\\d"],
+        "regexes":["^[1-9][0-9]*$"],
         "isOptional":true
        }
 

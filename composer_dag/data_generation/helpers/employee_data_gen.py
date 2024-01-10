@@ -7,6 +7,7 @@ import faker
 import ast
 import helpers.employee_data_gen_config as config_file
 from google.cloud import storage
+import swifter
 
 DATETIME_FORMAT="%Y-%m-%d"
 GCS_URI_PREFIX="gs://"
@@ -111,16 +112,43 @@ def get_city_state_zipcode(address):
     address_city_state_zipcode["zipcode"]=zipcode
     return address_city_state_zipcode
 
-def gen_last_working_day(employment_status,date_of_joining_company):
+def gen_last_working_day(employment_status, date_of_joining_company):
     fake=faker.Faker()
-
-    if employment_status in employment_status_active:
-        last_working_day=date.today()-timedelta(days=1)
-
-    else:
-        last_working_day=fake.date_between_dates(date_start=date_of_joining_company, date_end=datetime.today()-timedelta(weeks=12))
-    
+    last_working_day = np.where(
+        employment_status.isin(employment_status_active),
+        np.nan,
+        pd.to_datetime(date_of_joining_company).dt.date.apply(
+            lambda x: fake.date_between_dates(
+                date_start=x, date_end=datetime.today() - timedelta(weeks=12)
+            )
+        )
+    )
     return last_working_day
+
+def add_inconsistencies(output_df, total_error_records):
+
+    error_records=output_df.tail(total_error_records).reset_index(drop=True)
+    error_records=error_records[["emp_id","first_name","last_name","phone","manager_id"]]
+    error_records['error_category'] = np.random.choice(['first_name', 'last_name','phone', 'manager_id'], len(error_records))
+    error_records["first_name"]=error_records[["first_name","error_category"]].swifter.apply(lambda x: np.nan if x.error_category=="first_name" else x.first_name,axis=1)
+    error_records["last_name"]=error_records[["last_name","error_category"]].swifter.apply(lambda x: np.nan if x.error_category=="last_name" else x.last_name,axis=1)
+    error_records["phone"]=error_records[["phone","error_category"]].swifter.apply(lambda x: x.phone.replace("-","") if x.error_category=="phone" else x.phone,axis=1)
+    error_records["manager_id"]=error_records[["manager_id","error_category"]].swifter.apply(lambda x: np.nan if x.error_category=="manager_id" else x.manager_id,axis=1)
+    error_records.drop(columns=["error_category"],inplace=True)
+
+    for index, row in error_records.iterrows():
+        emp_id = row['emp_id']
+        first_name = row['first_name']
+        last_name = row['last_name']
+        phone = row['phone']
+        manager_id = row['manager_id']
+        output_df.loc[output_df['emp_id']==emp_id,'first_name']=first_name
+        output_df.loc[output_df['emp_id']==emp_id,'last_name']=last_name
+        output_df.loc[output_df['emp_id']==emp_id,'phone']=phone
+        output_df.loc[output_df['emp_id']==emp_id,'manager_id']=manager_id
+    
+    return output_df
+
 
 def employee_data_gen_start_function():
 
@@ -134,6 +162,7 @@ def employee_data_gen_start_function():
 
     no_of_floors=config_file.no_of_floors
     total_records=config_file.total_records
+    total_error_records=int(total_records*0.02)
     job_type=config_file.job_type
     employment_status_inactive=config_file.employment_status_inactive
 
@@ -141,51 +170,54 @@ def employee_data_gen_start_function():
 
     employment_status_active=config_file.employment_status_active
 
+
     #Add emp_id
 
     output_df["emp_id"]=np.arange(1,total_records+1)
-    output_df["emp_id"]=output_df["emp_id"].apply(lambda x : f"{config_file.emp_id_prefix}-{x:04d}")
+    output_df["emp_id"]=output_df["emp_id"].swifter.apply(lambda x : f"{config_file.emp_id_prefix}-{x:06d}")
 
     #Add first_name and last_name
 
-    output_df["first_name"]=output_df["emp_id"].apply(lambda x: fake.first_name())
-    output_df["last_name"]=output_df["emp_id"].apply(lambda x: fake.last_name())
+    output_df["first_name"]=output_df["emp_id"].swifter.apply(lambda x: fake.first_name())
+    output_df["last_name"]=output_df["emp_id"].swifter.apply(lambda x: fake.last_name())
 
     #Add SSN, phone, email
 
-    output_df["ssn"]=output_df["emp_id"].apply(lambda x: fake.ssn())
-    output_df["phone"]=output_df["emp_id"].apply(lambda x: gen_phone())
-    output_df["email"]=output_df.apply(lambda x:gen_email(x.emp_id,x.first_name,x.last_name),axis=1)
+    output_df["ssn"]=output_df["emp_id"].swifter.apply(lambda x: fake.ssn())
+    output_df["phone"]=output_df["emp_id"].swifter.apply(lambda x: gen_phone())
+    output_df["email"]=output_df.swifter.apply(lambda x:gen_email(x.emp_id,x.first_name,x.last_name),axis=1)
 
     #Add address, district, state, zipcode
 
-    output_df[["address", "district", "state","zipcode"]] = output_df.apply(lambda x: get_city_state_zipcode(fake.address()), axis=1, result_type='expand')
+    output_df[["address", "district", "state","zipcode"]] = output_df.swifter.apply(lambda x: get_city_state_zipcode(fake.address()), axis=1, result_type='expand')
 
     #Add job_type, job_code, job_code_description
 
-    output_df["job_type"]=output_df["emp_id"].apply(lambda x: random.choice(job_type))
+    output_df["job_type"]=output_df["emp_id"].swifter.apply(lambda x: random.choice(job_type))
 
     job_code_df=pd.DataFrame.from_dict({"job_code":config_file.job_code,"job_code_description":config_file.job_code_description})
 
-    output_df["job_code"]=output_df["emp_id"].apply(lambda x: random.choice(config_file.job_code))
+    output_df["job_code"]=output_df["emp_id"].swifter.apply(lambda x: random.choice(config_file.job_code))
     output_df=output_df.merge(job_code_df,how="inner",on="job_code")
 
     #Add workplace_id, floor_number and department_name
 
     workplace_ids_list=workplace_environments_df["workplace_id"].to_list()
-    output_df["workplace_id"]=output_df["emp_id"].apply(lambda x: random.choice(workplace_ids_list))
+    workplace_ids_list_series=np.random.choice(workplace_ids_list, total_records)
+    output_df["workplace_id"]=workplace_ids_list_series
 
-    output_df["floor_number"]=output_df["emp_id"].apply(lambda x: random.choice(floor_list))
+    floor_number_series=np.random.choice(floor_list, total_records)
+    output_df["floor_number"]=floor_number_series
     output_df["department_name"]=output_df["floor_number"].apply(lambda x: f"{config_file.department_prefix}-{x:04d}")
 
     #Add date_of_joining_company
 
-    output_df["date_of_joining_company"]=output_df["emp_id"].apply(lambda x: fake.date_between_dates(date_start=START_DATE, date_end=END_DATE))
+    output_df["date_of_joining_company"]=output_df["emp_id"].swifter.apply(lambda x: fake.date_between_dates(date_start=START_DATE, date_end=END_DATE))
 
     #Add employment_status
 
     employment_status_list=employment_status_active+employment_status_inactive
-    employment_status_series=np.random.choice(employment_status_list, total_records, p=['0.83','0.1','0.02','0.05'])
+    employment_status_series=np.random.choice(employment_status_list, total_records, p=['0.85','0.1','0.05'])
     output_df["employment_status"]=employment_status_series
 
     #Add manager_id
@@ -199,47 +231,56 @@ def employee_data_gen_start_function():
         selected_employee = random.choice(active_employees_in_workplace['emp_id'].tolist())
         managers[workplace] = selected_employee
 
-    output_df["manager_id"]=output_df.apply(lambda x: None if x.emp_id in managers.values() else managers[x.workplace_id],axis=1)
+    output_df["manager_id"]=output_df.swifter.apply(lambda x: None if x.emp_id in managers.values() else managers[x.workplace_id],axis=1)
 
     #Add last_working_day
 
-    output_df["last_working_day"]=output_df.apply(lambda x: gen_last_working_day(x['employment_status'],x['date_of_joining_company']),axis=1)
+    output_df['last_working_day'] = gen_last_working_day(
+    output_df['employment_status'], output_df['date_of_joining_company']
+)
 
     #Add education_highest_qualification
 
-    output_df["education_highest_qualification"]=output_df["emp_id"].apply(lambda x: random.choice(config_file.education_highest_qualification_list))
+    output_df["education_highest_qualification"]=output_df["emp_id"].swifter.apply(lambda x: random.choice(config_file.education_highest_qualification_list))
 
     #Add year_graduated
 
-    output_df["year_graduated"]=output_df["emp_id"].apply(lambda x: fake.date_between_dates(date_start=START_DATE_YEAR_GRADUATED, date_end=END_DATE_YEAR_GRADUATED))
+    output_df["year_graduated"]=output_df["emp_id"].swifter.apply(lambda x: fake.date_between_dates(date_start=START_DATE_YEAR_GRADUATED, date_end=END_DATE_YEAR_GRADUATED))
 
     #Add GPA
 
-    output_df["GPA"]=output_df["emp_id"].apply(lambda x: round(fake.pyfloat(min_value=2.0, max_value=4.0),1))
+    output_df["GPA"]=output_df["emp_id"].swifter.apply(lambda x: round(fake.pyfloat(min_value=2.0, max_value=4.0),1))
 
     #Add source_timestamp
 
-    output_df["source_timestamp"]=output_df["date_of_joining_company"].apply(lambda x: datetime.today())
+    output_df["source_timestamp"]=output_df["date_of_joining_company"].swifter.apply(lambda x: datetime.today())
 
     #Sort Values
 
     output_df.sort_values(by=['emp_id'],inplace=True)
 
+    #Add inconsistencies
+
+    output_df = add_inconsistencies(output_df, total_error_records)
+
     #Apply datatime format to relevant fields
 
-    output_df[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]]=output_df[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]].apply(pd.to_datetime)
+    output_df[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]]=output_df[["date_of_joining_company","last_working_day","year_graduated","source_timestamp"]].swifter.apply(pd.to_datetime)
+
+    #Apply integer format to relevant fields
+
+    output_df[["zipcode","floor_number"]]=output_df[["zipcode","floor_number"]].swifter.apply(pd.to_numeric)
 
     #Add timestamp to filename
 
     output_file_name=config_file.destination_file_name_prefix+str(datetime.now().strftime('%Y%m%d%H%M%S'))+".parquet"
-    
+
     destination_bucket_name=get_bucket_name(project_name,destination_bucket_prefix)
     output_file_with_path=GCS_URI_PREFIX+destination_bucket_name+"/"+destination_folder_name+"/"+output_file_name
     output_df.to_parquet(output_file_with_path,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
-    
+
     output_file_name_bkp=config_file.destination_file_name_prefix+".parquet"
     output_file_with_path_bkp=GCS_URI_PREFIX+bucket_name+"/"+employee_data_folder_name+"/"+output_file_name_bkp
     output_df.to_parquet(output_file_with_path_bkp,index = None,engine='pyarrow',use_deprecated_int96_timestamps=True)
-
 
 

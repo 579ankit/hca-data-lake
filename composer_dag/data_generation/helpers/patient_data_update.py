@@ -33,7 +33,11 @@ def generate_patient_id(number):
     emp_id_prefix = "PAT"
     emp_id_counter = number
     while True:
-        yield f"{emp_id_prefix}-{emp_id_counter:04d}"
+        # if emp_id_counter%4==0:
+        #     yield ""
+        # else:
+        #     yield f"{emp_id_prefix}-{emp_id_counter:07d}"
+        yield f"{emp_id_prefix}-{emp_id_counter:07d}"
         emp_id_counter += 1
 
 
@@ -49,10 +53,10 @@ def gen_phone():
     return '{}-{}-{}'.format(first,second, last)
 
 
-# Generate 10 rows of data
+# Generate rows of data
 data = []
 def generate_data(count):
-    logging.info("Inside generate_data function....!")
+    print("*********insert count is {} ************".format(count))
     for i in range(10):
         patient_id=next(generate_patient_id(count+1))
         count+=1
@@ -65,6 +69,10 @@ def generate_data(count):
         date_of_birth=fake.date_of_birth(minimum_age=25, maximum_age=65)
         address=fake.address()
         hospital_id=random.choice(hospital_ids)
+        if hospital_id!="":
+            hospital_id_num=int(hospital_id.split("-")[1])
+            if hospital_id_num%7==0:
+                hospital_id="hos{}".format(hospital_id_num)
         phone_number=gen_phone()
         email_address="{0}.{1}.{2}@gmail.com".format(first_name, last_name, i)
         emergency_contact=gen_phone()
@@ -119,17 +127,19 @@ def getconn() -> pymysql.connections.Connection:
 
 def insert_update_to_cloud_sql():
     logging.info("insert_update_to_cloud_sql started......!")
+   
+    # # To create pool without Airflow    
     # pool = sqlalchemy.create_engine("mysql+pymysql://",creator=getconn, future=True)
+
+    # To create pool while using Airflow
     pool=sqlalchemy.create_engine("mysql+mysqlconnector://root:hcaroot@34.28.159.129/hca_patient_db_raw", future=True)
     with pool.connect() as db_conn:
-        # insert into database
-        logging.info("Inside with clause.....!")
         # query database
         result = db_conn.execute(sqlalchemy.text("SELECT count(*) from {0}".format(table_name))).fetchall()
 
-
         row_count=result[0][0]
-        logging.info("calling generate_data function....!")        
+        logging.info("calling generate_data function....!")    
+        logging.info("Initial number of rows are :", row_count)  
         data=generate_data(row_count)
         logging.info("Inserting rows to SQL....!")
         # Inserting rows into mysql table

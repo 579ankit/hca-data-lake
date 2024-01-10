@@ -21,13 +21,12 @@ dag = DAG(
     'Write_lab_report_data_dag_and_stream_upload_objects',
     default_args=default_args,
     description='Dag to write lab_report_data to csv and json format and stream it to pubsub and upload lab report objects',
-    schedule_interval="0 * * * *",
+    schedule_interval="*/5 * * * *",
 )
 
 
 def start_dag():
     logging.info("Starting the DAG...!")
-    logging.info(Variable.get("var1"))
 
 
 def end_dag():
@@ -48,6 +47,8 @@ lab_report_data_generation = PythonOperator(
     provide_context=True,
     dag=dag,
 )
+
+
 
 
 start_pubsub_stream = PythonOperator(
@@ -72,6 +73,8 @@ end_=PythonOperator(
     provide_context=True,
     dag=dag,
 )
+
+
 
 
 start_>>lab_report_data_generation>>start_pubsub_stream>>upload_lab_report_objects>>end_

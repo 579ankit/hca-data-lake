@@ -1,0 +1,13 @@
+project_id_stream                   = "hca-usr-hin-proc-datalake"
+region                              = "us-central1"
+location                            = "US"
+includedatabase                     = "hca_patient_db_raw"
+exludedatabase                      = "hca_patient_db_raw"
+includetables                       = ["patient_data"]
+excludetables                       = ["test_tables"]
+source-connection-display-name      = "mysql-datastream-connection"
+source-connection-profile-id        = "mysql-datastream-connection"
+destination-connection-display-name = "hca-patient-data-gcs"
+destination-connection-profile-id   = "hca-patient-data-gcs"
+datastream-display-name             = "hca-patient-db-datastream"
+datastream-id                       = "hca-patient-db-datastream"
