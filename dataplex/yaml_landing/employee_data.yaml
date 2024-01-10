@@ -1,0 +1,156 @@
+metadata_registry_defaults:
+  dataplex:
+    projects: hca-usr-hin-proc-datalake
+    locations: us-central1
+    lakes: hr-lake
+    zones: hr-landing-zone
+
+row_filters:
+  NONE:
+    filter_sql_expr: |-
+      True
+  INTERNATIONAL_ITEMS:
+    filter_sql_expr: |-
+      REGEXP_CONTAINS(item_id, 'INTNL')
+
+rule_dimensions:
+  - consistency
+  - correctness
+  - duplication
+  - completeness
+  - conformance
+  - integrity
+  - timeliness
+  - accuracy
+
+rules:
+  NOT_NULL:
+    rule_type: NOT_NULL
+    dimension: completeness
+  NO_DUPLICATES_IN_COLUMN_GROUPS:
+    rule_type: CUSTOM_SQL_STATEMENT
+    dimension: duplication
+    params:
+      custom_sql_arguments:
+        - column_names
+      custom_sql_statement: |-
+        select a.*
+        from data a
+        inner join (
+          select
+            $column_names
+          from data
+          group by $column_names
+          having count(*) > 1
+        ) duplicates
+        using ($column_names)
+  VALID_SSN:
+    rule_type: REGEX
+    dimension: conformance
+    params:
+      pattern: |-
+        ^[0-9]{3}-[0-9]{2}-[0-9]{4}$
+  VALID_PHONE_NUMBER:
+    rule_type: REGEX
+    dimension: conformance
+    params:
+      pattern: |-
+        ^[0-9]{3}-[0-9]{3}-[0-9]{4}$
+  VALID_VALUE_MATCHES_IN_BOTH_TABLES:
+    rule_type: CUSTOM_SQL_EXPR
+    dimension: integrity
+    params:
+      custom_sql_arguments:
+        - column_id
+        - table_id
+      custom_sql_expr: |-
+        $column in (select $column_id from $table_id)
+  VALID_MANAGER_WITH_EMP:
+    rule_type: CUSTOM_SQL_EXPR
+    dimension: correctness
+    params:
+      custom_sql_arguments:
+        - column_id
+        - table_id
+      custom_sql_expr: |-
+        $column is null OR ($column in (select $column_id from $table_id) AND ($column <> $column_id) )
+  VALID_FLOOR_NUMBER_1TO5:
+    rule_type: REGEX
+    dimension: conformance
+    params:
+      pattern: |-
+        ^[1-5]$
+  VALID_EMPLOYMENT_STATUS_EXPR:
+    rule_type: CUSTOM_SQL_EXPR
+    dimension: correctness
+    params:
+      custom_sql_arguments:
+        - column_id
+      custom_sql_expr: |-
+        (($column_id >= current_timestamp() OR $column_id is null) AND ($column = 'Active' OR $column = 'On Leave')) OR ($column = 'Terminated')
+
+rule_bindings:
+  VALID_EMP:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: emp_id
+    row_filter_id: NONE
+    rule_ids:
+      - NOT_NULL
+      - NO_DUPLICATES_IN_COLUMN_GROUPS:
+          column_names: "emp_id"
+  VALID_FIRST_NAME:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: first_name
+    row_filter_id: NONE
+    rule_ids:
+      - NOT_NULL
+  VALID_LAST_NAME:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: last_name
+    row_filter_id: NONE
+    rule_ids:
+      - NOT_NULL
+  VALID_SSN:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: ssn
+    row_filter_id: NONE
+    rule_ids:
+      - VALID_SSN
+  VALID_PHONE:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: phone
+    row_filter_id: NONE
+    rule_ids:
+      - VALID_PHONE_NUMBER
+  VALID_WORKPLACE:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: workplace_id
+    row_filter_id: NONE
+    rule_ids:
+      - NOT_NULL
+      - VALID_VALUE_MATCHES_IN_BOTH_TABLES:
+          column_id: "workplace_id"
+          table_id: "hca-usr-hin-landing-datalake.hca_employee_data_landing.hca_work_environments"
+  VALID_FLOOR_NUMBER:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: floor_number
+    row_filter_id: NONE
+    rule_ids:
+      - NOT_NULL
+      - VALID_FLOOR_NUMBER_1TO5
+  VALID_MANAGER:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: manager_id
+    row_filter_id: NONE
+    rule_ids:
+      - VALID_MANAGER_WITH_EMP:
+          column_id: "emp_id"
+          table_id: "hca-usr-hin-landing-datalake.hca_employee_data_landing.hca_employee_data"
+  VALID_EMPLOYMENT_STATUS:
+    entity_uri: bigquery://projects/hca-usr-hin-landing-datalake/datasets/hca_employee_data_landing/tables/hca_employee_data
+    column_id: employment_status
+    row_filter_id: NONE
+    rule_ids:
+      - VALID_EMPLOYMENT_STATUS_EXPR:
+          column_id: "last_working_day"
+  
