@@ -2,6 +2,10 @@ import base64
 import google.cloud.dlp
 from google.cloud import secretmanager
 
+secret_name = "SECRET_NAME"
+project = "PROJECT_NAME"
+
+
 def access_secret_version(project_id, secret_id, version_id="latest"):
     # Create the Secret Manager client.
     client = secretmanager.SecretManagerServiceClient()
@@ -15,23 +19,22 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
     # Return the decoded payload.
     return response.payload.data.decode('UTF-8')
 
+
 def reidentify_deterministic(
-    project: str,
     input_str: str,
     alphabet: str = None,
-    surrogate_type: str = None,
     key_name: str = None,
-    wrapped_key: str = None,
 ) -> None:
 
     # Instantiate a client
     dlp = google.cloud.dlp_v2.DlpServiceClient()
 
     # Convert the project id into a full resource id.
-    parent = f"projects/{project}/locations/global"
+    parent = f"projects/{project}/locations/us-central1"
 
     # The wrapped key is base64-encoded, but the library expects a binary
     # string, so decode it here.
+    wrapped_key = access_secret_version(project,secret_name)
     wrapped_key = base64.b64decode(wrapped_key)
 
     # Construct Deidentify Config
@@ -52,7 +55,26 @@ def reidentify_deterministic(
                             "crypto_key_name": key_name,
                         }
                     },
-                    "surrogate_info_type": {"name": surrogate_type},
+                    "surrogate_info_type": {"name": "SSN"},
+                }
+            },
+        },
+            {
+            "info_types":[
+                {
+                    "name":"pat_id"
+                },
+            ],
+            "primitive_transformation": {
+                "crypto_deterministic_config": 
+                {
+                    "crypto_key": {
+                        "kms_wrapped": {
+                            "wrapped_key": wrapped_key,
+                            "crypto_key_name": key_name,
+                        }
+                    },
+                    "surrogate_info_type": {"name": "pat_id"},
                 }
             },
         }
@@ -64,7 +86,14 @@ def reidentify_deterministic(
     "custom_info_types":[
     {
         "info_type":{
-        "name":surrogate_type
+        "name":"SSN"
+        },
+        "surrogate_type":{
+        }
+    },
+    {
+        "info_type":{
+        "name":"pat_id"
         },
         "surrogate_type":{
         }
