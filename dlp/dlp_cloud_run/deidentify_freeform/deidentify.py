@@ -1,6 +1,8 @@
 import google.cloud.dlp
+import syslog
 
-def deidentify_deterministic( 
+
+def deidentify_deterministic(
     project: str,
     input_str: str,
 ) -> None:
@@ -23,7 +25,7 @@ def deidentify_deterministic(
             "item": item,
         }
     )
-    
-    output_str=response.item.value
-        
+
+    output_str = response.item.value
+
     return output_str

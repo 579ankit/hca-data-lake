@@ -3,3 +3,4 @@ google-cloud-secret-manager
 Flask
 gunicorn==20.1.0
 Werkzeug==3.0.1
+numpy

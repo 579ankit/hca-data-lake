@@ -17,7 +17,7 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
     response = client.access_secret_version(name=name)
 
     # Return the decoded payload.
-    return response.payload.data.decode('UTF-8')
+    return response.payload.data.decode("UTF-8")
 
 
 def reidentify_deterministic(
@@ -34,72 +34,53 @@ def reidentify_deterministic(
 
     # The wrapped key is base64-encoded, but the library expects a binary
     # string, so decode it here.
-    wrapped_key = access_secret_version(project,secret_name)
+    wrapped_key = access_secret_version(project, secret_name)
     wrapped_key = base64.b64decode(wrapped_key)
 
     # Construct Deidentify Config
     reidentify_config = {
         "info_type_transformations": {
-            "transformations" : [
-            {
-            "info_types":[
+            "transformations": [
                 {
-                    "name":"SSN"
-                }
-            ],
-            "primitive_transformation": {
-                "crypto_deterministic_config": {
-                    "crypto_key": {
-                        "kms_wrapped": {
-                            "wrapped_key": wrapped_key,
-                            "crypto_key_name": key_name,
+                    "info_types": [{"name": "SSN"}],
+                    "primitive_transformation": {
+                        "crypto_deterministic_config": {
+                            "crypto_key": {
+                                "kms_wrapped": {
+                                    "wrapped_key": wrapped_key,
+                                    "crypto_key_name": key_name,
+                                }
+                            },
+                            "surrogate_info_type": {"name": "SSN"},
                         }
                     },
-                    "surrogate_info_type": {"name": "SSN"},
-                }
-            },
-        },
-            {
-            "info_types":[
-                {
-                    "name":"pat_id"
                 },
-            ],
-            "primitive_transformation": {
-                "crypto_deterministic_config": 
                 {
-                    "crypto_key": {
-                        "kms_wrapped": {
-                            "wrapped_key": wrapped_key,
-                            "crypto_key_name": key_name,
+                    "info_types": [
+                        {"name": "pat_id"},
+                    ],
+                    "primitive_transformation": {
+                        "crypto_deterministic_config": {
+                            "crypto_key": {
+                                "kms_wrapped": {
+                                    "wrapped_key": wrapped_key,
+                                    "crypto_key_name": key_name,
+                                }
+                            },
+                            "surrogate_info_type": {"name": "pat_id"},
                         }
                     },
-                    "surrogate_info_type": {"name": "pat_id"},
-                }
-            },
-        }
+                },
             ]
         }
     }
 
     inspect_config = {
-    "custom_info_types":[
-    {
-        "info_type":{
-        "name":"SSN"
-        },
-        "surrogate_type":{
-        }
-    },
-    {
-        "info_type":{
-        "name":"pat_id"
-        },
-        "surrogate_type":{
-        }
+        "custom_info_types": [
+            {"info_type": {"name": "SSN"}, "surrogate_type": {}},
+            {"info_type": {"name": "pat_id"}, "surrogate_type": {}},
+        ]
     }
-    ]
-}
 
     # Convert string to item
     item = {"value": input_str}
