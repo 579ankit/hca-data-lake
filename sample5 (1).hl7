@@ -1,0 +1,712 @@
+MSH|^~\&|LAB|COCGV|LAB||202505100210||ORU^R01|MT_COCGV_ORU_13421481..LAB.COCGV|P|2.1
+PID|1||AA00200494|AA258333|MCCATHRON^OLIVIA^SHEA^^^|BRANDY|20051212|F|^^^^^|B|1500 BRYANT WAY^APT 52^BOWLING GREEN^KY^42103||270-400-4574|999-999-9999||S|NON|AA0815456670|402-65-8708
+PV1|1|E|AA.ER^^|EM|||MUGST^Mugleston^Steven^W^^^MD|.SELF^REFERRED^SELF^^^^|xxCLAAN^Clark^Angela^G APRN^^^|||||||||ER||09|||||||||||||||||||COCGV||REG|||202505092231
+OBR|1|L4579645^LAB|^LAB|EDPREG^EDPREG (SER/UR)^L|S||202505100159|||AA.NU.AS12|||ANXIETY ATTACK|202505100204||MUGST^Mugleston^Steven^W^^^MD||0510:GV:C00079S||||202505100210|||F
+OBX|1|ST|HCGQLU^UR HCG QUAL^L|1|NEGATIVE||NEGATIVE|||AS|F|202408061352|^^^ML^TRISTAR GREENVIEW REGIONAL HOS||^
+OBX|2|CE|^^||^^||||||||^^^^||ML^TRISTAR GREENVIEW REGIONAL HOS
+OBX|3|AD|1801 ASHLEY CIRCLE||BOWLING GREEN|KY|42102
+NTE|1||THIS PROCEDURE HAS A URINE HCG SENSITIVITY OF 20mIU/ML AND A
+NTE|2||SERUM HCG SENSITIVITY OF 10mIU/ML.
+NTE|3||
+NTE|4||FALSE NEGATIVE RESULTS MAY OCCUR WHEN LEVELS OF HCG ARE
+NTE|5||BELOW THE SENSITIVITY LEVEL OF THE TEST. WHEN PREGANACY IS
+NTE|6||STILL SUSPECTED, A FIRST MORNING URINE SPECIMEN SHOULD BE
+NTE|7||COLLECTED 48 HOURS LATER AND TESTED.
+NTE|8||
+NTE|9||OCCASIONALLY, SPECIMENS CONTAINING LESS THAN 50mIU/ML FOR
+NTE|10||URINE AND SERUM MAY TEST AS WEAKLY POSITIVE. THESE ARE
+NTE|11||REPORTED AS INCONCLUSIVE AND SHOULD BE REPEATED IN 48
+NTE|12||HOURS WITH A FIRST MORNING SERUM OR URINE SPECIMEN. IN
+NTE|13||CERTAIN CIRCUMSTANCES, A QUANTITIATIVE BETA HCG MAY BE
+NTE|14||WARRANTED.
+NTE|15||
+NTE|16||VERY DILUTE URINE SPECIMENS, AS INDICATED BY A LOW SPECIFIC
+NTE|17||GRAVITY, MAY NOT CONTAIN REPRESENTATIVE LEVELS OF HCG. IF
+NTE|18||PREGNANCY IS STILL SUSPECTED, A FIRST MORNING URINE SPECIMEN
+NTE|19||SHOULD BE COLLECTED 48 HOURS LATER AND TESTED.
+NTE|20||
+NTE|21||FOR URINE AND SERUM MAY TEST AS
+NTE|22||WEAKLY POSITIVE. THESE ARE REPORTED AS INCONCLUSIVE AND
+NTE|23||SHOULD BE REPEATED IN 48 HOURS. IN CERTAIN CIRCUMSTANCES A
+NTE|24||QUANTITATIVE BETA HCG MAY BE WARRANTED.
+OBX|4|ST|HCGQL^HCG SERUM QUAL^L|1|TEST NOT PERFORMED||NEGATIVE|||AS|F|202408061352|^^^ML^TRISTAR GREENVIEW REGIONAL HOS||^
+OBX|5|CE|^^||^^||||||||^^^^||ML^TRISTAR GREENVIEW REGIONAL HOS
+OBX|6|AD|1801 ASHLEY CIRCLE||BOWLING GREEN|KY|42102
+
+MSH|^~\&|LAB|COCEAF|LAB||202505100238||ORU^R01|MT_COCEAF_ORU_43225399..LAB.COCEAF|P|2.1
+PID|1||F000380323|J70437|RAGLAND^BENJAMIN^^^^||19580805|M|RAGLAND^BENJAMIN^L^^^|W|1620 SEMINOLE LANE^^LYNCHBURG^VA^24504||(540)926-7874|SAME AS PATIENT||S|MET|F50037301018|228-86-0066
+PV1|1|I|F.3W^F.351^A|EM|||BAOTA99^Baosman^Tarekh^A^^^MD|.SELF^REFERRED^SELF^^^^|.NO PCP^PHYSICIAN^NO^PRIMARY OR FAMILY^^^||||||||BAOTA99^Baosman^Tarekh^A^^^MD|IN||01|||||||||||||||||||COCEAF||ADM|||202505091406
+OBR|1|L14027007^LAB|^LAB|CBC^CBC W/AUTO DIFFERENTIAL^L|R||202505100228|||5FOB3598|||HALLUCINATING|202505100232||MAKVI99^Makavana^Viraj^J R2^^^DO||0510:EAF:H00065R||||202505100238|||F
+OBX|1|ST|WBC^WHITE BLOOD CELL^L|1|10.65|10*3/uL|4.50-10.50|H||AS|F|202202081522|^^^ML^LewisGale Medical Center||^
+OBX|2|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|3|AD|1900 Electric Road||Salem|VA|24153
+OBX|4|ST|RBC^RED BLOOD CELL^L|1|4.40|10*6/uL|4.30-5.80|N||AS|F|202105101354|^^^ML^LewisGale Medical Center||^
+OBX|5|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|6|AD|1900 Electric Road||Salem|VA|24153
+OBX|7|ST|HGB^HEMOGLOBIN^L|1|13.5|g/dL|13.0-17.3|N||AS|F|202202090831|^^^ML^LewisGale Medical Center||^
+OBX|8|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|9|AD|1900 Electric Road||Salem|VA|24153
+OBX|10|ST|HCT^HEMATOCRIT^L|1|38.7|%|42.0-52.0|L||AS|F|202402161120|^^^ML^LewisGale Medical Center||^
+OBX|11|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|12|AD|1900 Electric Road||Salem|VA|24153
+OBX|13|ST|MCV^MEAN CELL VOLUME^L|1|88.0|fl|80.0-100.0|N||AS|F|202203082007|^^^ML^LewisGale Medical Center||^
+OBX|14|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|15|AD|1900 Electric Road||Salem|VA|24153
+OBX|16|ST|MCH^MEAN CELL HGB^L|1|30.7|pg|27.0-31.0|N||AS|F|202203082009|^^^ML^LewisGale Medical Center||^
+OBX|17|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|18|AD|1900 Electric Road||Salem|VA|24153
+OBX|19|ST|MCHC^MEAN CELL HGB CONCENTRATION^L|1|34.9|g/dL|31.5-35.5|N||AS|F|202105101342|^^^ML^LewisGale Medical Center||^
+OBX|20|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|21|AD|1900 Electric Road||Salem|VA|24153
+OBX|22|ST|RDWCV^RED CELL DISTRIBUTION WIDTH CV^L|1|14.6|%|12.5-15.5|N||AS|F|202004270822|^^^ML^LewisGale Medical Center||^
+OBX|23|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|24|AD|1900 Electric Road||Salem|VA|24153
+OBX|25|ST|PLT^PLATELET COUNT^L|1|132|10*3/uL|130-385|N||AS|F|202402160936|^^^ML^LewisGale Medical Center||^
+OBX|26|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|27|AD|1900 Electric Road||Salem|VA|24153
+OBX|28|ST|MPV^MEAN PLATELET VOLUME^L|1|10.4|fL|10.0-13.0|N||AS|F|202105101345|^^^ML^LewisGale Medical Center||^
+OBX|29|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|30|AD|1900 Electric Road||Salem|VA|24153
+OBX|31|ST|IPF^IMMATURE PLATELET FRACTION^L|1|4.5|%|1.6-6.1|N||AS|F|201810311149|^^^ML^LewisGale Medical Center||^
+OBX|32|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|33|AD|1900 Electric Road||Salem|VA|24153
+OBR|2|L14027007^LAB|^LAB|MDIFF^MANUAL DIFFERENTIAL^L|R||202505100228|||5FOB3598|||HALLUCINATING|202505100232||MAKVI99^Makavana^Viraj^J R2^^^DO||0510:EAF:H00065R||||202505100238|||I
+OBX|1|ST|NEU#^NEUTROPHIL # (MANUAL)^L|1||10*3/uL||||AS|I|201910091229|^^^ML^LewisGale Medical Center||^
+OBX|2|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|3|AD|1900 Electric Road||Salem|VA|24153
+OBX|4|ST|LYM#^LYMPHOCYTE # (MANUAL)^L|1||10*3/uL||||AS|I|202105101341|^^^ML^LewisGale Medical Center||^
+OBX|5|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|6|AD|1900 Electric Road||Salem|VA|24153
+OBX|7|ST|MON#^MONOCYTE # (MANUAL)^L|1||10*3/uL||||AS|I|202105101344|^^^ML^LewisGale Medical Center||^
+OBX|8|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|9|AD|1900 Electric Road||Salem|VA|24153
+OBX|10|ST|PLTEST^PLATELET ESTIMATE^L|1|||ADEQUATE|||AS|I|201901031322|^^^ML^LewisGale Medical Center||^
+OBX|11|CE|^^||^^||||||||^^^^||ML^LewisGale Medical Center
+OBX|12|AD|1900 Electric Road||Salem|VA|24153
+
+MSH|^~\&||COCHR|||202505101901||MDM^T04|MT_COCHR_MDM_HRDPTO.1.16207172|P|2.1|||AL|NE|
+PID|1||H000555593|D474304|LOGAN^LAWRENCE^LORENZO|HAMPTON|19390316|M|^^^^^^M|B|10309 ATTEMS WAY^^GLEN ALLEN^VA^23060|HEN|(804)690-6386|SAP||W|BAP|H44855515412|227-46-1957|
+PV1|1|I|H.TCU^H.F510^A|EM|||THEKH^Thein^Khin^K^^^MD^^^^^^XX|.SELF^REFERRED^SELF^^^^^^^^^^XX|HUNRI^Hunley^Richard^L^^^MD^^^^^^XX~BALJA^Baldwin^James^B^^^DPM^^^^^^XX~FARMI^Farrell^Michael^^^^MD^^^^^^XX~FRIEL^Friedman^Elke^K^^^MD^^^^^^XX~JONAA^Jones^Aaron^M^^^MD^^^^^^XX~LEVRO^Levitt^Robert^H^^^MD^^^^^^XX~MALRA2^Reddy^Raghu^^^^MD^^^^^^XX~PATSAR^Patel^Satish^R^^^MD^^^^^^XX~PERJO01^Perez Lara^Jose^L^^^MD^^^^^^XX~PERJO2^Perry^Jonathan^^^^MD^^^^^^XX|MEDP||||PR|||KENLEO^Kenzakowski^Leo^F^^^MD^^^^^^XX|IN||01||||||||||||||||EXP|||COCHR||DIS|||202504281805|202505101320|||||||PERJO2^Perry^Jonathan^^^^MD^^^^^^XX|
+TXA||PDINTCON^Int. Cardiology Consult Note|202505071622|202505071559||202505071559|202505071559||JENKA^Jenkins^Karen^H^^^NP~LEVRO^Levitt^Robert^H^^^MD||AP.JENKA^JENKINS^KAREN^^^^NP|H.PDOC20250507-0984|||H.PDOC|PDINTCON|Signed|||||JENKA^Jenkins^Karen^H^^^NP^^^^^^^^202505071559~LEVRO^Levitt^Robert^H^^^MD^^^^^^^^202505101901|
+OBX|1|TX||| |
+OBX|2|TX|||Henrico Doctor's Hospital (COCHR)|
+OBX|3|TX|||Int. Cardiology Consult Note|
+OBX|4|TX|||REPORT#:0507-0984  REPORT STATUS: Signed|
+OBX|5|TX|||DATE:05/07/25 TIME: 1559|
+OBX|6|TX|||  |
+OBX|7|TX|||PATIENT: LOGAN,LAWRENCE LORENZO         UNIT #: H000555593|
+OBX|8|TX|||ACCOUNT#: H44855515412                 ROOM/BED: H.F510-A|
+OBX|9|TX|||DOB: 03/16/39  AGE: 86      SEX: M      ATTEND: Thein,Khin K  MD|
+OBX|10|TX|||ADM DT: 04/28/25                        AUTHOR: Jenkins,Karen H  NP|
+OBX|11|TX|||REP SRV DT: 05/07/25                REP SRV TM: 1559|
+OBX|12|TX|||* ALL edits or amendments must be made on the electronic/computer document *|
+OBX|13|TX||| |
+OBX|14|TX||| |
+OBX|15|TX|||History of Present Illness|
+OBX|16|TX||| |
+OBX|17|TX|||History of Present Illness|
+OBX|18|TX|||HPI:|
+OBX|19|TX|||Per documentation|
+OBX|20|TX|||Mr Lawrence Logan is a 86-year-old man with PAF, CAD, peripheral arterial |
+OBX|21|TX|||disease, CKD, who was brought to the emergency room by his daughter today |
+OBX|22|TX|||because of a 2 week history of generalized weakness.  Up until a few weeks ago |
+OBX|23|TX|||patient had been driving, able to do his ADLs independently.  Daughter lives |
+OBX|24|TX|||with him, but has not had to give him much help, but for the last 2 weeks she |
+OBX|25|TX|||and her sister have needed to help him with bathing, changing clothes, and |
+OBX|26|TX|||getting around the house.  He is being followed by Dr. Baldwin of Podiatry for a|
+OBX|27|TX||| foot infection  and is also being followed by Dr. Farrell for an esophageal |
+OBX|28|TX|||stricture and is scheduled to undergo esophageal dilation on 5/1.  He denies any|
+OBX|29|TX|||chest pain or difficulty breathing.  No vomiting or abdominal pain.  Noticed |
+OBX|30|TX|||some epistaxis this morning, which he attributed to his Eliquis therapy, and he |
+OBX|31|TX|||took his last dose of Eliquis this morning.  He reports sometimes having the |
+OBX|32|TX|||feeling of food getting stuck in his throat, but usually able to tolerate |
+OBX|33|TX|||liquids but not always.  He and daughter both believe that his oral intake has |
+OBX|34|TX|||diminished over the last few months. Cardiology consulted after GI workup |
+OBX|35|TX|||revealed amyloid in the GI tract.|
+OBX|36|TX||| |
+OBX|37|TX|||5/7: Laying in bed, asleep on arrival. Family at bedside and contributes to |
+OBX|38|TX|||history. No acute complaints offered. IVFs infusing. Tele reviewed: NSR rate |
+OBX|39|TX|||70s.|
+OBX|40|TX||| |
+OBX|41|TX||| |
+OBX|42|TX||| |
+OBX|43|TX|||History - Adult longitudinal|
+OBX|44|TX|||Past medical history:|
+OBX|45|TX|||Reports: GERD/gastritis, Hypertension, Dyslipidemia. |
+OBX|46|TX|||Additional medical history:|
+OBX|47|TX|||Peripheral arterial disease|
+OBX|48|TX||| Hypertension|
+OBX|49|TX||| PAF, followed by Dr. Levitt, underwent DC cardioversion in February 2025|
+OBX|50|TX||| Gout|
+OBX|51|TX||| Chronic kidney disease, followed by Nephrology|
+OBX|52|TX||| Hypothyroidism|
+OBX|53|TX||| Esophageal strictures, requiring previous dilations|
+OBX|54|TX|||Additional surgical history:|
+OBX|55|TX|||CABG x3|
+OBX|56|TX||| Esophageal balloon dilation|
+OBX|57|TX|||Smoking status for patients 13 years old or older: Unknown,if ever smoked|
+OBX|58|TX|||Allergies:|
+OBX|59|TX|||Coded Allergies:|
+OBX|60|TX|||No Known Allergies (09/01/23)|
+OBX|61|TX||| |
+OBX|62|TX||| |
+OBX|63|TX|||Objective|
+OBX|64|TX|||VS/I O:|
+OBX|65|TX|||Last Documented:|
+OBX|66|TX|||                                     Result    Date Time|
+OBX|67|TX|||                       Pulse Ox            94  05/07 1054|
+OBX|68|TX|||                       B/P             130/70  05/07 1054|
+OBX|69|TX|||                       B/P Mean            94  05/07 1054|
+OBX|70|TX|||                       Temp              97.8  05/07 1054|
+OBX|71|TX|||                       Pulse               80  05/07 1054|
+OBX|72|TX|||                       Resp                25  05/07 1054|
+OBX|73|TX|||                       O2 Delivery   Room air  05/06 1915|
+OBX|74|TX|||                       O2 Flow Rate         0  05/06 1915|
+OBX|75|TX|||                       FiO2                40  05/03 0430|
+OBX|76|TX||| |
+OBX|77|TX|||24 hour I O ending at 0700:|
+OBX|78|TX|||                                    05/07 0700  05/06 1900|
+OBX|79|TX|||                     Intake Total       854.00     1866.00|
+OBX|80|TX|||                     Output Total          650         800|
+OBX|81|TX|||                     Balance            204.00     1066.00|
+OBX|82|TX||| |
+OBX|83|TX|||                     Intake, IV         400.00     1226.00|
+OBX|84|TX|||                     Intake, Oral          454         420|
+OBX|85|TX|||                     Intake, Oral                      220|
+OBX|86|TX|||                     Supplement|
+OBX|87|TX|||                     Number                              1|
+OBX|88|TX|||                     Bowel|
+OBX|89|TX|||                     Movements|
+OBX|90|TX|||                     Output, Urine         650         800|
+OBX|91|TX|||                     Patient                       64.4 kg|
+OBX|92|TX|||                     Weight|
+OBX|93|TX|||                     Weight                     Bed scale|
+OBX|94|TX|||                     Measurement|
+OBX|95|TX|||                     Method|
+OBX|96|TX||| |
+OBX|97|TX|||PATIENT WEIGHT:|
+OBX|98|TX||| |
+OBX|99|TX|||Weight (lb):   141|
+OBX|100|TX|||Weight (oz):  15.64|
+OBX|101|TX|||Weight (kg):  64.400|
+OBX|102|TX||| |
+OBX|103|TX|||General appearance: cachectic/emaciated, chronically ill appearing|
+OBX|104|TX|||Head/Eyes: eyes closed on exam|
+OBX|105|TX|||ENT: dry mucous membranes|
+OBX|106|TX|||Neck: no JVD|
+OBX|107|TX|||Cardiovascular:|
+OBX|108|TX|||   CV assessment: regular rate and rhythm|
+OBX|109|TX|||Respiratory: no distress|
+OBX|110|TX|||Abdomen: non-tender, no distention|
+OBX|111|TX|||Upper extremity:|
+OBX|112|TX|||   UE assessment: no edema (multiple wounds -  dressed)|
+OBX|113|TX|||Lower extremity:|
+OBX|114|TX|||   LE assessment: no edema|
+OBX|115|TX|||Neuro/CNS: unable to assess - asleep during exam|
+OBX|116|TX|||Skin: abnormal color, poor skin turgor, dry|
+OBX|117|TX|||Psychiatry: unable to evaluate|
+OBX|118|TX||| |
+OBX|119|TX||| |
+OBX|120|TX|||Assessment   Plan|
+OBX|121|TX||| |
+OBX|122|TX|||Free Text A P Notes|
+OBX|123|TX|||Free Text A P:|
+OBX|124|TX|||Mr Lawrence Logan is an 86-year-old man with PAF, CAD, peripheral arterial |
+OBX|125|TX|||disease, CKD, who was brought to the emergency room by his daughter today |
+OBX|126|TX|||because of a 2 week history of generalized weakness. Cardiology consulted after |
+OBX|127|TX|||GI workup revealed amyloid in the GI tract an concerns for cardiac amyloid. |
+OBX|128|TX||| |
+OBX|129|TX||| |
+OBX|130|TX|||Dysphagia Esophageal strictures and the had an EGD that showed grade C |
+OBX|131|TX|||esophagitis and has a dilation..  As per GI doctor Farrell today biopsy shows |
+OBX|132|TX|||amyloidosis with atypical squamous cells.  and he consulted Oncology.  Speech |
+OBX|133|TX|||following upgrading diet.|
+OBX|134|TX|||Previous echo 5/4/2025|
+OBX|135|TX|||1. Left ventricle: The cavity size is normal. Wall thickness is increased in a|
+OBX|136|TX|||   pattern of moderate to severe LVH. Systolic function is normal. The|
+OBX|137|TX|||   estimated ejection fraction is 50-55%. Wall motion is normal; there are no|
+OBX|138|TX|||   regional wall motion abnormalities.|
+OBX|139|TX|||2. Aortic valve: There is thickening, consistent with sclerosis, without|
+OBX|140|TX|||   stenosis. There is trivial regurgitation. The peak systolic velocity is|
+OBX|141|TX|||   2.1m/sec.|
+OBX|142|TX|||3. Mitral valve: There is trivial regurgitation.|
+OBX|143|TX|||4. Left atrium: The atrium is dilated.|
+OBX|144|TX|||5. Right atrium: The atrium is dilated.|
+OBX|145|TX|||6. Tricuspid valve: There is trivial regurgitation.|
+OBX|146|TX|||7. Pulmonic valve: There is mild regurgitation.|
+OBX|147|TX|||8. Pulmonary arteries: Systolic pressure is within the normal range.|
+OBX|148|TX|||- will obtain PYP to initiate cardiac amyloid workup during hospitalization |
+OBX|149|TX||| |
+OBX|150|TX|||Hx of Afib - maintaining NSR on Amio 200/d |
+OBX|151|TX||| |
+OBX|152|TX|||CAD/PAD |
+OBX|153|TX||| |
+OBX|154|TX|||CKD - nephrology following |
+OBX|155|TX||| |
+OBX|156|TX||| |
+OBX|157|TX|||Will initiate cardiac amyloid workup during hospitalization. Plan of care |
+OBX|158|TX|||discussed with Dr Levitt who will continue care going forward. |
+OBX|159|TX||| |
+OBX|160|TX|||Please reach out with any additional questions. Thank you for allowing us to |
+OBX|161|TX|||participate in your care. |
+OBX|162|TX||| |
+OBX|163|TX||| |
+OBX|164|TX|||Electronically Signed by Jenkins,Karen H  NP on 05/07/25 at 1622|
+OBX|165|TX|||Electronically Signed by Levitt,Robert H  MD on 05/10/25 at 1901|
+OBX|166|TX|||  |
+OBX|167|TX|||RPT #: 0507-0984|
+OBX|168|TX|||***END OF REPORT***|
+
+MSH|^~\&||COCBM|||202505102008||MDM^T02|MT_COCBM_MDM_BMDPTO.1.15053814|P|2.1|||AL|NE|
+PID|1||V001252177|V806370|GARCIA VILLEGAS^MARIA||19650419|F|GARCIA^MARIA^^^^^M|OTHER|8282 PARK PLACE BLVD^APT NO. A11^HOUSTON^TX^77017|HARR|832-389-1063|999-999-9999||X|NOD|V01041850594|639-03-3166|
+PV1|1|I|V.MTU^V.4012^C|EM|||CHAAS.01^Chauhan^Ashima^^^^MD^^^^^^XX|.SELF^Referred^Self^^^^^^^^^^XX|.NO PCP^Physician^No^Primary or Family^^^^^^^^^XX~KHOAT^Khokhar^Ather^R^^^MD^^^^^^XX~VASAN^Vasquez Donado^Andres^^^^MD^^^^^^XX|MEDI||||PR|||CHAAS.01^Chauhan^Ashima^^^^MD^^^^^^XX|IN||OTHE|||||||||||||||||||COCBM||ADM|||202505091549||||||||VASAN^Vasquez Donado^Andres^^^^MD^^^^^^XX|
+TXA||ECHO^eECHOCARDIOGRAM REPORT|202505102008|202505102008||202505101711|202505102008||VASAN^Vasquez Donado^Andres^^^^MD||GCD.CPS^GCD^CPS|V.CPS20250510-0023^STDY762115|||V.CPS|ECHO|Signed|||||VASAN^Vasquez Donado^Andres^^^^MD^^^^^^^^202505102008|
+OBX|1|TX||H|0510-0023                   HCA Houston Healthcare Southeast|
+OBX|2|TX||H|                              |
+OBX|3|TX||H|                             |
+OBX|4|TX||H| |
+OBX|5|TX||H|PATIENT NAME: GARCIA VILLEGAS,MARIA           ADMIT DATE:  05/09/25|
+OBX|6|TX||H|ACCOUNT NO: V01041850594                         ROOM NO:  V.4012    |
+OBX|7|TX||H|MEDICAL RECORD NO: V001252177                        AGE:  60     |
+OBX|8|TX||H|REPORT TYPE: eECHOCARDIOGRAM REPORT                  SEX:  F  |
+OBX|9|TX||H|                                           DATE OF BIRTH:  04/19/65|
+OBX|10|TX||H|ADMITTING PHYSICIAN:Ashima Chauhan, MD            |
+OBX|11|TX||H|ATTENDING PHYSICIAN:Ashima Chauhan, MD            |
+OBX|12|TX||X| |
+OBX|13|TX||X| |
+OBX|14|TX|||*HCA Houston Healthcare - Southeast*|
+OBX|15|TX|||4000 Spencer Highway|
+OBX|16|TX|||Pasadena, Texas 77504|
+OBX|17|TX|||Phone (713) 359-2000|
+OBX|18|TX|||Transthoracic Echocardiogram|
+OBX|19|TX||| |
+OBX|20|TX|||Patient: Garcia Villegas, Maria|
+OBX|21|TX|||Study Date: 05/10/2025|
+OBX|22|TX|||BP: 147 / 72|
+OBX|23|TX|||URN: V806370|
+OBX|24|TX|||MRN: V001252177|
+OBX|25|TX|||Account#: V01041850594|
+OBX|26|TX|||Location:|
+OBX|27|TX|||Accession#: VXE202505090019|
+OBX|28|TX|||DOB: 04/19/1965|
+OBX|29|TX|||Age: 60|
+OBX|30|TX|||Gender: F|
+OBX|31|TX|||Height: 64.2 in / 163 cm|
+OBX|32|TX|||Weight: 154.3 lb / 70 kg|
+OBX|33|TX|||BMI/BSA: 26.3 kg/m 2 / 1.8 m 2|
+OBX|34|TX|||*Ordering Physician: * Chauhan, Ashima|
+OBX|35|TX||| |
+OBX|36|TX|||*Interpreting Physician: * Vasquez, Donado Andres MD|
+OBX|37|TX|||*Sonographer: * Danton Huynh AAS, RCS|
+OBX|38|TX||| |
+OBX|39|TX|||------------------------------------------------------------------------------|
+OBX|40|TX|||Indications:   VASAN.|
+OBX|41|TX||| |
+OBX|42|TX|||------------------------------------------------------------------------------|
+OBX|43|TX|||Study data:  Transthoracic echocardiogram.  Procedure:  A transthoracic|
+OBX|44|TX|||echocardiogram was performed. Image quality was fair.  Complete 2D, complete|
+OBX|45|TX|||spectral Doppler, and color Doppler.  Location:  Bedside.  Patient status:|
+OBX|46|TX|||Inpatient. Patient room number: 4012-C.  Study status:  Routine.  Heart rate:|
+OBX|47|TX|||91 bpm.  Rhythm:  Normal sinus rhythm.|
+OBX|48|TX||| |
+OBX|49|TX|||------------------------------------------------------------------------------|
+OBX|50|TX|||Findings|
+OBX|51|TX||| |
+OBX|52|TX|||Left ventricle:  The cavity size is normal. Wall thickness is mildly|
+OBX|53|TX|||increased. Systolic function is normal. The estimated ejection fraction is|
+OBX|54|TX|||55-59%. Wall motion is normal; there are no regional wall motion|
+OBX|55|TX|||abnormalities. Grade I diastolic dysfunction.|
+OBX|56|TX|||Right ventricle:  The cavity size is normal. Systolic function is normal.|
+OBX|57|TX||T| |
+OBX|58|TX||T|PATIENT NAME: GARCIA VILLEGAS,MARIA            ACCOUNT #: V01041850594|
+OBX|59|TX||X| |
+OBX|60|TX||X| |
+OBX|61|TX||X| |
+OBX|62|TX|||Left atrium:  The atrium is normal in size.|
+OBX|63|TX|||Right atrium:  The atrium is normal in size.|
+OBX|64|TX|||Aorta:|
+OBX|65|TX|||Aortic root: The root is normal-sized.|
+OBX|66|TX|||Aortic valve:   The valve is trileaflet. The leaflets are mildly thickened and|
+OBX|67|TX|||mildly calcified. There is thickening, consistent with sclerosis.  There is no|
+OBX|68|TX|||evidence of stenosis.   There is no regurgitation.|
+OBX|69|TX|||Mitral valve:  The annulus is mildly calcified. The leaflets are mildly|
+OBX|70|TX|||thickened.  There is no evidence of stenosis.   There is trace regurgitation.|
+OBX|71|TX|||Tricuspid valve:  The valve is structurally normal. There is trace|
+OBX|72|TX|||regurgitation.|
+OBX|73|TX|||Pulmonic valve:   The valve is structurally normal. There is trace|
+OBX|74|TX|||regurgitation.|
+OBX|75|TX|||Pericardium:  A small pericardial effusion is identified.|
+OBX|76|TX|||Pulmonary arteries:  The main pulmonary artery is normal-sized.|
+OBX|77|TX|||Systemic veins:|
+OBX|78|TX|||Inferior vena cava: The IVC is normal-sized.|
+OBX|79|TX||| |
+OBX|80|TX|||------------------------------------------------------------------------------|
+OBX|81|TX|||Measurements|
+OBX|82|TX||| |
+OBX|83|TX||| Left ventricle        Value             Ref       01/29/2025|
+OBX|84|TX||| EDD, LAX              3.8   cm          3.8 - 5.2 4.6|
+OBX|85|TX||| ESD, LAX              2.6   cm          2.2 - 3.5 3.2|
+OBX|86|TX||| FS, LAX               31    %           27 - 45   31|
+OBX|87|TX||| IVS, ED               1.3   cm          0.6 - 0.9 1.4|
+OBX|88|TX||| PW, ED                1.3   cm          0.6 - 0.9 1.4|
+OBX|89|TX||| IVS/PW, ED            1.05              --------- 1.02|
+OBX|90|TX||| EF                    59    %           54 - 74   58|
+OBX|91|TX||| E', lat ann, TDI      6.2   cm/sec      >=10.0    7.7|
+OBX|92|TX||| E/e', lat ann, TDI    12                <=13      14|
+OBX|93|TX||| E', med ann, TDI      4.6   cm/sec      >=7.0     ----------|
+OBX|94|TX||| E/e', med ann, TDI    16                --------- ----------|
+OBX|95|TX||| E', avg, TDI          5.4   cm/sec      --------- ----------|
+OBX|96|TX||| E/e', avg, TDI        13                <=14      ----------|
+OBX|97|TX||| |
+OBX|98|TX||| LVOT                  Value             Ref       01/29/2025|
+OBX|99|TX||| Diam, S               2.01  cm          --------- 2.00|
+OBX|100|TX||| Area                  3.2   cm 2        --------- 3.1|
+OBX|101|TX||| Peak vel, S           1.41  m/sec       --------- 1.19|
+OBX|102|TX||| Mean vel, S           0.93  m/sec       --------- 0.84|
+OBX|103|TX||| VTI, S                20.4  cm          --------- 25.5|
+OBX|104|TX||| Peak grad, S          8     mm Hg       --------- 6|
+OBX|105|TX||| Mean grad, S          4     mm Hg       --------- 3|
+OBX|106|TX||| SV                    65    ml          --------- 80|
+OBX|107|TX||| Qs                    5.87  L/min       --------- 15.88|
+OBX|108|TX||| Qs/bsa                3.3   L/(min-m 2) --------- 7.7|
+OBX|109|TX||| SV/bsa                36    ml/m 2      --------- 39|
+OBX|110|TX||| |
+OBX|111|TX||| Right ventricle       Value             Ref       01/29/2025|
+OBX|112|TX||| EDD, LAX              2.4   cm          --------- 2.7|
+OBX|113|TX||| TAPSE, MM             2.3   cm          >=1.7     ----------|
+OBX|114|TX||| S' lateral            12.9  cm/sec      >=9.5     ----------|
+OBX|115|TX||| |
+OBX|116|TX||T| |
+OBX|117|TX||T|PATIENT NAME: GARCIA VILLEGAS,MARIA            ACCOUNT #: V01041850594|
+OBX|118|TX||X| |
+OBX|119|TX||X| |
+OBX|120|TX||X| |
+OBX|121|TX||| RVOT                  Value             Ref       01/29/2025|
+OBX|122|TX||| Peak v, S             1.02  m/sec       --------- ----------|
+OBX|123|TX||| Peak grad, S          4     mm Hg       --------- ----------|
+OBX|124|TX||| |
+OBX|125|TX||| Left atrium           Value             Ref       01/29/2025|
+OBX|126|TX||| AP dim, ES            3.1   cm          2.7 - 3.8 4.0|
+OBX|127|TX||| |
+OBX|128|TX||| Right atrium          Value             Ref       01/29/2025|
+OBX|129|TX||| Estimated RAP         3     mm Hg       --------- ----------|
+OBX|130|TX||| |
+OBX|131|TX||| Aortic valve          Value             Ref       01/29/2025|
+OBX|132|TX||| Peak v, S             1.8   m/sec       --------- 1.6|
+OBX|133|TX||| Mean v, S             1.11  m/sec       --------- 1.1|
+OBX|134|TX||| VTI, S                24.2  cm          --------- 30.6|
+OBX|135|TX||| Mean grad, S          6     mm Hg       --------- 5|
+OBX|136|TX||| Peak grad, S          12.9  mm Hg       --------- 9.6|
+OBX|137|TX||| LVOT/AV, VTI ratio    0.84              --------- 0.83|
+OBX|138|TX||| AVA, VTI              2.68  cm 2        --------- 2.61|
+OBX|139|TX||| LVOT/AV, Vpeak ratio  0.78              --------- 0.77|
+OBX|140|TX||| AVA, Vmax             2.49  cm 2        --------- 2.41|
+OBX|141|TX||| |
+OBX|142|TX||| Mitral valve          Value             Ref       01/29/2025|
+OBX|143|TX||| Mean v, D             0.71  m/sec       --------- ----------|
+OBX|144|TX||| Peak E                0.72  m/sec       --------- 1.07|
+OBX|145|TX||| Peak A                1.02  m/sec       --------- 1.04|
+OBX|146|TX||| VTI leaflet coapt     23.1  cm          --------- ----------|
+OBX|147|TX||| MiV/LVOT VTI          1.1               --------- ----------|
+OBX|148|TX||| Decel time            281   ms          --------- 227|
+OBX|149|TX||| Mean grad, D          2     mm Hg       --------- ----------|
+OBX|150|TX||| Peak grad, D          4.2   mm Hg       --------- 4.6|
+OBX|151|TX||| Peak E/A ratio        0.71              --------- 1.03|
+OBX|152|TX||| |
+OBX|153|TX||| Ascending aorta       Value             Ref       01/29/2025|
+OBX|154|TX||| AAo AP diam, S        3.1   cm          --------- 2.5|
+OBX|155|TX||| |
+OBX|156|TX||| Inferior vena cava    Value             Ref       01/29/2025|
+OBX|157|TX||| Diam                  1.2   cm          <=2.1     ----------|
+OBX|158|TX||| |
+OBX|159|TX|||------------------------------------------------------------------------------|
+OBX|160|TX|||Conclusions|
+OBX|161|TX||| |
+OBX|162|TX|||Summary:|
+OBX|163|TX||| |
+OBX|164|TX|||1. Left ventricle: The cavity size is normal. Wall thickness is mildly|
+OBX|165|TX|||   increased. Systolic function is normal. The estimated ejection fraction is|
+OBX|166|TX|||   55-59%. Wall motion is normal; there are no regional wall motion|
+OBX|167|TX|||   abnormalities. Grade I diastolic dysfunction.|
+OBX|168|TX|||2. Aortic valve: There is thickening, consistent with sclerosis.|
+OBX|169|TX|||3. Mitral valve: The annulus is mildly calcified. The leaflets are mildly|
+OBX|170|TX|||   thickened.|
+OBX|171|TX|||4. Pericardium, extracardiac: A small pericardial effusion is identified.|
+OBX|172|TX|||Electronically signed by|
+OBX|173|TX||| |
+OBX|174|TX||X| |
+OBX|175|TX||T| |
+OBX|176|TX||T|PATIENT NAME: GARCIA VILLEGAS,MARIA            ACCOUNT #: V01041850594|
+OBX|177|TX||X| |
+OBX|178|TX||X| |
+OBX|179|TX||X| |
+OBX|180|TX|||Vasquez, Donado Andres MD|
+OBX|181|TX|||05/10/2025 20:08|
+OBX|182|TX||X| |
+OBX|183|TX||X| |
+OBX|184|TX||X| |
+OBX|185|TX||X| |
+OBX|186|TX||X| |
+OBX|187|TX||X|Electronically Signed by Andres Vasquez Donado, MD on 05/10/25 at 2008|
+OBX|188|TX||X| |
+OBX|189|TX||X| |
+OBX|190|TX||X| |
+OBX|191|TX||X| |
+OBX|192|TX||X| |
+OBX|193|TX||X| |
+OBX|194|TX||X| |
+OBX|195|TX||X| |
+OBX|196|TX||X| |
+OBX|197|TX||X| |
+OBX|198|TX||X| |
+OBX|199|TX||X| |
+OBX|200|TX||X| |
+OBX|201|TX||X| |
+OBX|202|TX||X| |
+OBX|203|TX||X| |
+OBX|204|TX||X| |
+OBX|205|TX||X| |
+OBX|206|TX||X| |
+OBX|207|TX||X| |
+OBX|208|TX||X| |
+OBX|209|TX||X| |
+OBX|210|TX||X| |
+OBX|211|TX||X| |
+OBX|212|TX||X| |
+OBX|213|TX||X| |
+OBX|214|TX||X| |
+OBX|215|TX||X| |
+OBX|216|TX||X| |
+OBX|217|TX||X| |
+OBX|218|TX||X| |
+OBX|219|TX||X| |
+OBX|220|TX||X| |
+OBX|221|TX||X| |
+OBX|222|TX||X| |
+OBX|223|TX||X| |
+OBX|224|TX||X| |
+OBX|225|TX||X| |
+OBX|226|TX||X| |
+OBX|227|TX||X| |
+OBX|228|TX||X| |
+OBX|229|TX||X| |
+OBX|230|TX||X| |
+OBX|231|TX||X| |
+OBX|232|TX||X| |
+OBX|233|TX||X| |
+OBX|234|TX||T| |
+OBX|235|TX||T|PATIENT NAME: GARCIA VILLEGAS,MARIA            ACCOUNT #: V01041850594|
+
+MSH|^~\&||COCNW|||202505102109||MDM^T02|MT_COCNW_MDM_NWDPTO.1.13298736|P|2.1|||AL|NE|
+PID|1||J000623558|Y276997|HENLIN^KIMBERLY^MAY|NOELNA|19810512|F|^^^^^^M|W|2121 NW 29TH CT^SPOT L3^OAKLAND PARK^FL^33311|BR|954-393-8730|||M|BAP|J00121348747|015-62-5185|
+PV1|1|P|J.ER||||AWANO^Awad^Noor^^^^MD^^^^^^XX||KAZTO^Kazdan^Todd^J^^^DO^^^^^^XX|||||||||ER||07|||||||||||||||||||COCNW||PRE|
+TXA||PDEDPRCER2^ED Provider Report|202505102109|202505102109||202505102109|202505102109||ZHOMI99^Zhou^Ming^R1^^^MD||8DWO3596^ZHOU^MINGHAN|J.PDOC20250510-0763|||J.PDOC|PDEDPRCER2|Draft|||||ZHOMI99^Zhou^Ming^R1^^^MD^^^^^^^^202505102109|
+OBX|1|TX||| |
+OBX|2|TX|||HCA FLORIDA NORTHWEST HOSPITAL (COCNW)|
+OBX|3|TX|||EMERGENCY PROVIDER REPORT|
+OBX|4|TX|||REPORT#:0510-0763  REPORT STATUS: Draft|
+OBX|5|TX|||DATE:05/10/25 TIME: 2109|
+OBX|6|TX|||  |
+OBX|7|TX|||PATIENT: HENLIN,KIMBERLY MAY             UNIT #: J000623558|
+OBX|8|TX|||ACCOUNT#: J00121348747                 ROOM/BED:|
+OBX|9|TX|||DOB: 05/12/81 AGE: 43      SEX: F      PCP PHYS: Kazdan,Todd J  DO|
+OBX|10|TX|||SERVICE DT:                              AUTHOR: Zhou,Ming  MD R1|
+OBX|11|TX|||REP SRV DT: 05/10/25                 REP SRV TM: 2109|
+OBX|12|TX|||* ALL edits or amendments must be made on the electronic/computer document *|
+OBX|13|TX||| |
+OBX|14|TX||| |
+OBX|15|TX|||HPI-Chest Pain 40 and Over|
+OBX|16|TX||| |
+OBX|17|TX|||General|
+OBX|18|TX|||Initial Greet Date/Time 05/10/25 2101|
+OBX|19|TX||| |
+OBX|20|TX|||Past Medical History - Adult|
+OBX|21|TX|||Stated Complaint ABDOMINAL PAIN, CHEST PAIN, AND VOMMITING -3 DAYS|
+OBX|22|TX|||Allergies|
+OBX|23|TX|||Coded Allergies:|
+OBX|24|TX|||iodine (Severe, ANAPHYLAXIS 05/02/25)|
+OBX|25|TX|||Metronidazole HCl (From FLAGYL) (Intermediate, RASH 05/02/25)|
+OBX|26|TX|||oxycodone HCl (From Percocet) (Intermediate, RASH 05/02/25)|
+OBX|27|TX|||propoxyphene napsylate (From Darvocet-N 100) (Intermediate, RASH 05/02/25)|
+OBX|28|TX||| |
+OBX|29|TX|||Home Medications|
+OBX|30|TX|||Active Scripts|
+OBX|31|TX|||Amoxicillin/Potassium Clav (Amox-Clav 875-125 MG) 1 TAB PO BID  |
+OBX|32|TX|||     7 Days #14 TAB |
+OBX|33|TX|||     Prov:      10/03/24|
+OBX|34|TX|||IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN |
+OBX|35|TX|||     IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN #30 TAB |
+OBX|36|TX|||     Prov:      10/03/24|
+OBX|37|TX|||NEOM/POLY/BAC/PRAM (NEOSPORIN + PAIN RELIEF TOPICAL) 1 APPLIC TOPICAL BID  |
+OBX|38|TX|||     NEOM/POLY/BAC/PRAM (NEOSPORIN + PAIN RELIEF TOPICAL) 1 APPLIC TOPICAL BID  |
+OBX|39|TX|||#28.3 GM |
+OBX|40|TX|||     Prov:      10/03/24|
+OBX|41|TX|||DICYCLOMINE 10 MG PO Q6H PRN PRN ABDOMINAL PAIN OR DIARRHEA |
+OBX|42|TX|||     DICYCLOMINE 10 MG PO Q6H PRN PRN ABDOMINAL PAIN OR DIARRHEA #20 CAP |
+OBX|43|TX|||     Prov:      04/13/25|
+OBX|44|TX|||Ondansetron (Ondansetron Odt) 4 MG PO Q8H PRN PRN NAUSEA |
+OBX|45|TX|||     Ondansetron (Ondansetron Odt) 4 MG PO Q8H PRN PRN NAUSEA #15 TAB |
+OBX|46|TX|||     Prov:      04/13/25|
+OBX|47|TX|||CYCLOBENZAPRINE (FLEXERIL) 5 MG PO BEDTIME  |
+OBX|48|TX|||     CYCLOBENZAPRINE (FLEXERIL) 5 MG PO BEDTIME  #15 TAB |
+OBX|49|TX|||     Prov:      03/28/25|
+OBX|50|TX|||IBUPROFEN (MOTRIN) 600 MG PO Q8H PRN PRN PAIN |
+OBX|51|TX|||     IBUPROFEN (MOTRIN) 600 MG PO Q8H PRN PRN PAIN #30 TAB |
+OBX|52|TX|||     Prov:      03/28/25|
+OBX|53|TX|||Acetaminophen (Tylenol Extra Strength) 500 MG PO Q8H PRN PRN Pain |
+OBX|54|TX|||     Acetaminophen (Tylenol Extra Strength) 500 MG PO Q8H PRN PRN Pain #10 TAB |
+OBX|55|TX|||     Prov:      03/28/25|
+OBX|56|TX|||Polyethylene Glycol 3350 (Miralax) 17 GM PO ASDIR  |
+OBX|57|TX|||     Polyethylene Glycol 3350 (Miralax) 17 GM PO ASDIR  #119 GM |
+OBX|58|TX|||     Prov:      12/09/24|
+OBX|59|TX|||SENNOSIDES (SENOKOT) 2 TAB PO BID  |
+OBX|60|TX|||     14 Days #30 TAB |
+OBX|61|TX|||     Prov:      12/09/24|
+OBX|62|TX|||DOCUSATE SODIUM (COLACE) 100 MG PO BID  |
+OBX|63|TX|||     14 Days #28 CAP |
+OBX|64|TX|||     Prov:      12/09/24|
+OBX|65|TX|||ORPHENADRINE ER (NORFLEX) 100 MG PO Q12H PRN PRN MUSCLE SPASM |
+OBX|66|TX|||     ORPHENADRINE ER (NORFLEX) 100 MG PO Q12H PRN PRN MUSCLE SPASM #15 TAB |
+OBX|67|TX|||     Prov:      04/26/25|
+OBX|68|TX|||Meloxicam 15 MG PO DAILY PRN PRN pain |
+OBX|69|TX|||     Meloxicam 15 MG PO DAILY PRN PRN pain #15 TAB |
+OBX|70|TX|||     Prov:      04/26/25|
+OBX|71|TX|||Albuterol Sulfate (Proventil HFA) 2 PUFF INH Q4H PRN PRN WHEEZING |
+OBX|72|TX|||     Albuterol Sulfate (Proventil HFA) 2 PUFF INH Q4H PRN PRN WHEEZING #6.7 GM |
+OBX|73|TX|||     Prov:      03/24/24|
+OBX|74|TX|||Benzonatate (Tessalon Perles) 100 MG PO Q8H PRN PRN Cough |
+OBX|75|TX|||     Benzonatate (Tessalon Perles) 100 MG PO Q8H PRN PRN Cough #15 CAP |
+OBX|76|TX|||     Prov:      03/24/24|
+OBX|77|TX|||PROMETHAZINE (PHENERGAN) 25 MG PO Q4H PRN PRN vomiting |
+OBX|78|TX|||     PROMETHAZINE (PHENERGAN) 25 MG PO Q4H PRN PRN vomiting #20 TAB |
+OBX|79|TX|||     Prov:      03/24/25|
+OBX|80|TX|||NAPROXEN EC (EC-NAPROSYN) 500 MG PO BID  |
+OBX|81|TX|||     5 Days #10 TAB |
+OBX|82|TX|||     Prov:      02/26/25|
+OBX|83|TX|||Lidocaine (Lidoderm 5%) 1 PATCH TOPICAL DAILY  |
+OBX|84|TX|||     5 Days #5 PATCH |
+OBX|85|TX|||     Prov:      02/26/25|
+OBX|86|TX|||METHOCARBAMOL 500 MG PO Q6H PRN PRN muscle spasm |
+OBX|87|TX|||     METHOCARBAMOL 500 MG PO Q6H PRN PRN muscle spasm #15 TAB |
+OBX|88|TX|||     Prov:      02/26/25|
+OBX|89|TX|||ATORVASTATIN (LIPITOR) 40 MG PO HS  |
+OBX|90|TX|||     ATORVASTATIN (LIPITOR) 40 MG PO HS  #30 TAB Ref 1|
+OBX|91|TX|||     Prov:      06/26/21|
+OBX|92|TX|||CODEINE PHOSPHATE/guaiFENesin (GUAIFEN-CODEINE 200-20 MG/10ML) 10 ML PO Q6H PRN |
+OBX|93|TX|||PRN cough |
+OBX|94|TX|||     CODEINE PHOSPHATE/guaiFENesin (GUAIFEN-CODEINE 200-20 MG/10ML) 10 ML PO Q6H|
+OBX|95|TX|||PRN PRN cough #100 ML |
+OBX|96|TX|||     Prov:      04/28/25|
+OBX|97|TX|||IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN |
+OBX|98|TX|||     IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN #15 TAB |
+OBX|99|TX|||     Prov:      01/27/24|
+OBX|100|TX|||methylPREDNISolone (MEDROL DOSEPAK) 1 PACKET PO ASDIR  |
+OBX|101|TX|||     methylPREDNISolone (MEDROL DOSEPAK) 1 PACKET PO ASDIR  #21 TAB |
+OBX|102|TX|||     Prov:      03/28/24|
+OBX|103|TX|||AMOXICILLIN (AMOXIL) 875 MG PO Q12HR  |
+OBX|104|TX|||     10 Days #20 TAB |
+OBX|105|TX|||     Prov:      01/19/25|
+OBX|106|TX|||guaiFENesin (MUCINEX) 600 MG PO Q12H PRN PRN COUGH OR CONGESTION |
+OBX|107|TX|||     guaiFENesin (MUCINEX) 600 MG PO Q12H PRN PRN COUGH OR CONGESTION #14 TAB.SA|
+OBX|108|TX||| |
+OBX|109|TX|||     Prov:      04/02/24|
+OBX|110|TX|||ALPRAZolam (XANAX) 0.25 MG PO BID PRN PRN ANXIETY |
+OBX|111|TX|||     ALPRAZolam (XANAX) 0.25 MG PO BID PRN PRN ANXIETY #10 TAB |
+OBX|112|TX|||     Prov:      02/23/25|
+OBX|113|TX|||hydrOXYzine HCL (ATARAX) 25 MG PO Q12H PRN PRN ANXIETY |
+OBX|114|TX|||     hydrOXYzine HCL (ATARAX) 25 MG PO Q12H PRN PRN ANXIETY #15 TAB |
+OBX|115|TX|||     Prov:      12/22/23|
+OBX|116|TX|||FLUTICASONE PROPIONATE (FLONASE 50 MCG/ACT) 1 SPRAY NASAL BID  |
+OBX|117|TX|||     FLUTICASONE PROPIONATE (FLONASE 50 MCG/ACT) 1 SPRAY NASAL BID  #16 GM |
+OBX|118|TX|||     Prov:      04/07/24|
+OBX|119|TX|||CYCLOBENZAPRINE (FLEXERIL) 10 MG PO BEDTIME PRN PRN MUSCLE SPASMS/PAIN |
+OBX|120|TX|||     CYCLOBENZAPRINE (FLEXERIL) 10 MG PO BEDTIME PRN PRN MUSCLE SPASMS/PAIN #15 |
+OBX|121|TX|||TAB |
+OBX|122|TX|||     Prov:      04/21/24|
+OBX|123|TX|||IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN |
+OBX|124|TX|||     IBUPROFEN (MOTRIN) 800 MG PO TID PRN PRN PAIN #30 TAB |
+OBX|125|TX|||     Prov:      03/19/25|
+OBX|126|TX|||Ondansetron (Ondansetron Odt) 4 MG PO Q8H PRN PRN Nausea vomiting |
+OBX|127|TX|||     Ondansetron (Ondansetron Odt) 4 MG PO Q8H PRN PRN Nausea vomiting #15 TAB |
+OBX|128|TX|||     Prov:      05/08/25|
+OBX|129|TX|||LOPERAMIDE (IMODIUM) 0 MG PO ASDIR  MDD 12 MG (6 CAPS)|
+OBX|130|TX|||     LOPERAMIDE (IMODIUM) 0 MG PO ASDIR  MDD 12 MG (6 CAPS)#12 CAP |
+OBX|131|TX|||     Prov:      05/08/25|
+OBX|132|TX||| |
+OBX|133|TX|||Reported Medications|
+OBX|134|TX|||VENLAFAXINE XR (EFFEXOR XR) 37.5 MG PO DAILY  |
+OBX|135|TX||| |
+OBX|136|TX||| |
+OBX|137|TX|||Past Medical History:|
+OBX|138|TX|||Reports: Dyslipidemia. |
+OBX|139|TX|||Additional Medical History|
+OBX|140|TX|||anxiety|
+OBX|141|TX|||Past Surgical History:|
+OBX|142|TX|||Reports: Appendectomy. |
+OBX|143|TX|||Additional Surgical History|
+OBX|144|TX|||right ovary and tube|
+OBX|145|TX||| benign neck mass|
+OBX|146|TX|||Family History:|
+OBX|147|TX|||Reports: Cancer. |
+OBX|148|TX|||Additional Family History|
+OBX|149|TX|||Mother- lung cancer, brain cancer, kidney cancer. Mother deceased at at 42|
+OBX|150|TX||| |
+OBX|151|TX||| Patient does not know about her father's health|
+OBX|152|TX|||Drug Use Marijuana|
+OBX|153|TX||| |
+OBX|154|TX|||Physical Exam|
+OBX|155|TX||| |
+OBX|156|TX|||Vital Signs|
+OBX|157|TX|||Vital Signs|
+OBX|158|TX|||First Documented:|
+OBX|159|TX|||                                    Result  Date Time|
+OBX|160|TX|||                          Pulse Ox      97  05/10 2104|
+OBX|161|TX|||                          B/P       139/83  05/10 2104|
+OBX|162|TX|||                          Temp        97.9  05/10 2104|
+OBX|163|TX|||                          Pulse        122  05/10 2104|
+OBX|164|TX|||                          Resp          18  05/10 2104|
+OBX|165|TX||| |
+OBX|166|TX|||Last Documented:|
+OBX|167|TX|||                                    Result  Date Time|
+OBX|168|TX|||                          Pulse Ox      97  05/10 2104|
+OBX|169|TX|||                          B/P       139/83  05/10 2104|
+OBX|170|TX|||                          Temp        97.9  05/10 2104|
+OBX|171|TX|||                          Pulse        122  05/10 2104|
+OBX|172|TX|||                          Resp          18  05/10 2104|
+OBX|173|TX||| |
+OBX|174|TX||| |
+OBX|175|TX||| |
+OBX|176|TX|||Patient Discharge   Departure|
+OBX|177|TX||| |
+OBX|178|TX|||Vital Signs/Condition|
+OBX|179|TX|||Vital Signs|
+OBX|180|TX|||First Documented:|
+OBX|181|TX|||                                    Result  Date Time|
+OBX|182|TX|||                          Pulse Ox      97  05/10 2104|
+OBX|183|TX|||                          B/P       139/83  05/10 2104|
+OBX|184|TX|||                          Temp        97.9  05/10 2104|
+OBX|185|TX|||                          Pulse        122  05/10 2104|
+OBX|186|TX|||                          Resp          18  05/10 2104|
+OBX|187|TX||| |
+OBX|188|TX|||Last Documented:|
+OBX|189|TX|||                                    Result  Date Time|
+OBX|190|TX|||                          Pulse Ox      97  05/10 2104|
+OBX|191|TX|||                          B/P       139/83  05/10 2104|
+OBX|192|TX|||                          Temp        97.9  05/10 2104|
+OBX|193|TX|||                          Pulse        122  05/10 2104|
+OBX|194|TX|||                          Resp          18  05/10 2104|
+OBX|195|TX||| |
+OBX|196|TX|||All vital signs available at the time of this entry have been reviewed.|
+OBX|197|TX||| |
+OBX|198|TX||| |
+OBX|199|TX|||Discharge/Care Plan|
+OBX|200|TX|||Referrals|
+OBX|201|TX|||PCP Referral: Kazdan,Todd J  DO|
+OBX|202|TX|||     Address:|
+OBX|203|TX|||     2300 N Commercy Parkway|
+OBX|204|TX|||     Suite 111|
+OBX|205|TX|||     Weston, FL 33326|
+OBX|206|TX||| |
+OBX|207|TX|||RPT #: 0510-0763|
+OBX|208|TX|||***END OF REPORT***|
+
