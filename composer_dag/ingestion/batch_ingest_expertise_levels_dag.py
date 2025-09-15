@@ -6,7 +6,7 @@ from airflow.operators.python_operator import PythonOperator
 from google.cloud import storage
 from helpers.ingest_data import ingest_data
 
-BUCKET_NAME = 'hca_employee-data_source_20231005'
+BUCKET_NAME = 'hca_employee-data_source_20231005' #bucket name
 DESTINATION_BUCKET_NAME = 'hca_employee-data_landing_20231005'
 FOLDER_PREFIX = 'expertise_levels/'
     
