@@ -16,6 +16,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Print OIDC token claims
+      run: |
+        echo "${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+        | cut -d '.' -f2 \
+        | base64 -d \
+        | jq .
+
     - id: 'auth'
       uses: 'google-github-actions/auth@v3'
       with:

@@ -33,4 +33,4 @@ move_incremental_data_task = PythonOperator(
 
     
 if __name__ == "__main__":
-    dag.cli() #cli command
+    dag.cli() 
