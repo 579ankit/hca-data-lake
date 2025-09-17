@@ -1,9 +1,0 @@
-config {
-    type: "table",
-    database: "curated-project-id"
-}
-SELECT
-  REGEXP_EXTRACT(lab_report_uri, r'/lab_report_id/(\d+)') AS lab_report_id,
-  lab_report_uri
-FROM
-  lab_report_object_table;
